@@ -8,6 +8,7 @@ buildscript {
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath "io.spring.gradle:dependency-management-plugin:1.0.3.RELEASE"
     }
 }
 
@@ -22,6 +23,9 @@ sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
+
+    // 2020.03.25 S3 업로더를 위한 추가
+    // maven { url 'https://repo.spring.io/libs-milestone'}
 }
 
 dependencies {
@@ -43,5 +47,25 @@ dependencies {
 
     compile('org.mariadb.jdbc:mariadb-java-client')
 
+    // 2020.03.25 S3 업로더를 위한 추가
+    // compile('org.springframework.cloud:spring-cloud-starter-aws')
+    compile 'com.amazonaws:aws-java-sdk-s3'
 
+    // 2020.03.25 S3 업로더를 위한 추가(대안책)
+    // compile('com.amazonaws:aws-java-sdk-s3')
+}
+
+dependencyManagement {
+    imports {
+        // 2020.03.25 S3 업로더를 위한 추가
+        // mavenBom 'org.springframework.cloud:spring-cloud-aws:2.0.0.RC2'
+        // mavenBom 'org.springframework.cloud:spring-cloud-aws-core:1.2.2.RELEASE'
+        mavenBom 'com.amazonaws:aws-java-sdk-bom:1.11.228'
+
+        // 2020.03.25 S3 업로더를 위한 추가(대안책)
+        // mavenBom 'org.springframework.cloud:spring-cloud-aws:2.2.1.RELEASE'
+
+        // 2020.03.25 S3 업로더를 위한 추가(대안책)
+        // mavenBom 'com.amazonaws:aws-java-sdk-bom:1.11.228'
+    }
 }
