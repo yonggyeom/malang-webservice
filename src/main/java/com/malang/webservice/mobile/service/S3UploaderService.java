@@ -49,6 +49,7 @@ public class S3UploaderService {
         metadata.setContentLength(multipartFile.getSize());
         System.out.println("multipartFile.getSize() : " + multipartFile.getSize());
         System.out.println("metadata.getContentLength() : " + metadata.getContentLength());
+        System.out.println("bucket : " + bucket);
 
         amazonS3Client.putObject(new PutObjectRequest(bucket, fileName, multipartFile.getInputStream(), metadata).withCannedAcl(CannedAccessControlList.PublicRead));
         return amazonS3Client.getUrl(bucket, fileName).toString();
