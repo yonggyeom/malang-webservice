@@ -35,7 +35,8 @@ public class S3UploaderService {
         InstanceProfileCredentialsProvider instanceProfileCredentialsProvider
                 = new InstanceProfileCredentialsProvider(true);
 
-//        System.out.println(instanceProfileCredentialsProvider.getCredentials().toString());
+//        System.out.println(instanceProfileCredentialsProvider.getCredentials().getAWSAccessKeyId());
+//        System.out.println(instanceProfileCredentialsProvider.getCredentials().getAWSSecretKey());
 
         amazonS3Client = AmazonS3ClientBuilder.standard()
                 .withRegion(this.region)
