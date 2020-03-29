@@ -26,7 +26,7 @@
 </td>
 <td>
 <div class="infoBox" id="failures">
-<div class="counter">0</div>
+<div class="counter">6</div>
 <p>failures</p>
 </div>
 </td>
@@ -38,7 +38,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.769s</div>
+<div class="counter">0.340s</div>
 <p>duration</p>
 </div>
 </td>
@@ -47,8 +47,8 @@
 </div>
 </td>
 <td>
-<div class="infoBox success" id="successRate">
-<div class="percent">100%</div>
+<div class="infoBox failures" id="successRate">
+<div class="percent">50%</div>
 <p>successful</p>
 </div>
 </td>
@@ -58,13 +58,45 @@
 <div id="tabs">
 <ul class="tabLinks">
 <li>
-<a href="#tab0">Packages</a>
+<a href="#tab0">Failed tests</a>
 </li>
 <li>
-<a href="#tab1">Classes</a>
+<a href="#tab1">Packages</a>
+</li>
+<li>
+<a href="#tab2">Classes</a>
 </li>
 </ul>
 <div id="tab0" class="tab">
+<h2>Failed tests</h2>
+<ul class="linkList">
+<li>
+<a href="classes/com.malang.webservice.mobile.domain.posts.PostsRepositoryTest.html">PostsRepositoryTest</a>.
+<a href="classes/com.malang.webservice.mobile.domain.posts.PostsRepositoryTest.html#BaseTimeEntity_등록">BaseTimeEntity_등록</a>
+</li>
+<li>
+<a href="classes/com.malang.webservice.mobile.domain.posts.PostsRepositoryTest.html">PostsRepositoryTest</a>.
+<a href="classes/com.malang.webservice.mobile.domain.posts.PostsRepositoryTest.html#게시글저장_불러오기">게시글저장_불러오기</a>
+</li>
+<li>
+<a href="classes/com.malang.webservice.mobile.web.IndexControllerTest.html">IndexControllerTest</a>.
+<a href="classes/com.malang.webservice.mobile.web.IndexControllerTest.html#메인페이지_로딩">메인페이지_로딩</a>
+</li>
+<li>
+<a href="classes/com.malang.webservice.mobile.web.PostsApiControllerTest.html">PostsApiControllerTest</a>.
+<a href="classes/com.malang.webservice.mobile.web.PostsApiControllerTest.html#Posts_등록된다">Posts_등록된다</a>
+</li>
+<li>
+<a href="classes/com.malang.webservice.mobile.web.PostsApiControllerTest.html">PostsApiControllerTest</a>.
+<a href="classes/com.malang.webservice.mobile.web.PostsApiControllerTest.html#Posts_수정된다">Posts_수정된다</a>
+</li>
+<li>
+<a href="classes/com.malang.webservice.mobile.web.ProfileControllerTest.html">ProfileControllerTest</a>.
+<a href="classes/com.malang.webservice.mobile.web.ProfileControllerTest.html#profile은_인증없이_호출된다">profile은_인증없이_호출된다</a>
+</li>
+</ul>
+</div>
+<div id="tab1" class="tab">
 <h2>Packages</h2>
 <table>
 <thead>
@@ -79,24 +111,24 @@
 </thead>
 <tbody>
 <tr>
-<td class="success">
+<td class="failures">
 <a href="packages/com.malang.webservice.mobile.domain.posts.html">com.malang.webservice.mobile.domain.posts</a>
 </td>
 <td>2</td>
+<td>2</td>
 <td>0</td>
-<td>0</td>
-<td>0.334s</td>
-<td class="success">100%</td>
+<td>0.002s</td>
+<td class="failures">0%</td>
 </tr>
 <tr>
-<td class="success">
+<td class="failures">
 <a href="packages/com.malang.webservice.mobile.web.html">com.malang.webservice.mobile.web</a>
 </td>
 <td>9</td>
+<td>4</td>
 <td>0</td>
-<td>0</td>
-<td>0.432s</td>
-<td class="success">100%</td>
+<td>0.230s</td>
+<td class="failures">55%</td>
 </tr>
 <tr>
 <td class="success">
@@ -105,13 +137,13 @@
 <td>1</td>
 <td>0</td>
 <td>0</td>
-<td>0.003s</td>
+<td>0.108s</td>
 <td class="success">100%</td>
 </tr>
 </tbody>
 </table>
 </div>
-<div id="tab1" class="tab">
+<div id="tab2" class="tab">
 <h2>Classes</h2>
 <table>
 <thead>
@@ -126,13 +158,13 @@
 </thead>
 <tbody>
 <tr>
-<td class="success"/>
+<td class="failures"/>
 <a href="classes/com.malang.webservice.mobile.domain.posts.PostsRepositoryTest.html">com.malang.webservice.mobile.domain.posts.PostsRepositoryTest</a>
 <td>2</td>
+<td>2</td>
 <td>0</td>
-<td>0</td>
-<td>0.334s</td>
-<td class="success">100%</td>
+<td>0.002s</td>
+<td class="failures">0%</td>
 </tr>
 <tr>
 <td class="success"/>
@@ -140,35 +172,35 @@
 <td>2</td>
 <td>0</td>
 <td>0</td>
-<td>0.137s</td>
+<td>0.228s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
-<td class="success"/>
+<td class="failures"/>
 <a href="classes/com.malang.webservice.mobile.web.IndexControllerTest.html">com.malang.webservice.mobile.web.IndexControllerTest</a>
 <td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0.219s</td>
-<td class="success">100%</td>
-</tr>
-<tr>
-<td class="success"/>
-<a href="classes/com.malang.webservice.mobile.web.PostsApiControllerTest.html">com.malang.webservice.mobile.web.PostsApiControllerTest</a>
-<td>2</td>
-<td>0</td>
-<td>0</td>
-<td>0.059s</td>
-<td class="success">100%</td>
-</tr>
-<tr>
-<td class="success"/>
-<a href="classes/com.malang.webservice.mobile.web.ProfileControllerTest.html">com.malang.webservice.mobile.web.ProfileControllerTest</a>
 <td>1</td>
 <td>0</td>
+<td>0s</td>
+<td class="failures">0%</td>
+</tr>
+<tr>
+<td class="failures"/>
+<a href="classes/com.malang.webservice.mobile.web.PostsApiControllerTest.html">com.malang.webservice.mobile.web.PostsApiControllerTest</a>
+<td>2</td>
+<td>2</td>
 <td>0</td>
-<td>0.014s</td>
-<td class="success">100%</td>
+<td>0s</td>
+<td class="failures">0%</td>
+</tr>
+<tr>
+<td class="failures"/>
+<a href="classes/com.malang.webservice.mobile.web.ProfileControllerTest.html">com.malang.webservice.mobile.web.ProfileControllerTest</a>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0s</td>
+<td class="failures">0%</td>
 </tr>
 <tr>
 <td class="success"/>
@@ -176,7 +208,7 @@
 <td>3</td>
 <td>0</td>
 <td>0</td>
-<td>0.003s</td>
+<td>0.002s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
@@ -185,7 +217,7 @@
 <td>1</td>
 <td>0</td>
 <td>0</td>
-<td>0.003s</td>
+<td>0.108s</td>
 <td class="success">100%</td>
 </tr>
 </tbody>
@@ -199,7 +231,7 @@
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 4.10.2</a> at 2020. 3. 29. 오후 9:26:33</p>
+<a href="http://www.gradle.org">Gradle 4.10.2</a> at 2020. 3. 29. 오후 9:35:16</p>
 </div>
 </div>
 </body>

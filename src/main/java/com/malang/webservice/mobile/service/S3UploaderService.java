@@ -45,9 +45,9 @@ public class S3UploaderService {
     }
 
     public String upload(MultipartFile multipartFile, String dirName) throws IOException {
-        String fileName = dirName + "/" + multipartFile.getName();
+        String fileName = dirName + "/" + multipartFile.getResource().getFilename();
         System.out.println("dirName : " + dirName);
-        System.out.println("multipartFile.getName() : " + multipartFile.getName());
+        System.out.println("multipartFile.getResource().getFilename() : " + multipartFile.getResource().getFilename());
         System.out.println("fileName : " + fileName);
 
         String uploadImageUrl = putS3(multipartFile, fileName);
