@@ -17,7 +17,11 @@ import javax.annotation.PostConstruct;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.util.EnumSet;
 import java.util.Optional;
+
+import static java.nio.file.attribute.PosixFilePermission.*;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -77,6 +81,9 @@ public class S3UploaderService {
 
     private Optional<File> convert(MultipartFile file) throws IOException {
         File convertFile = new File(file.getOriginalFilename());
+        Files.setPosixFilePermissions(convertFile.toPath(),
+                EnumSet.of(OWNER_READ, OWNER_WRITE, OWNER_EXECUTE, GROUP_READ, GROUP_EXECUTE));
+
         if(convertFile.createNewFile()) {
             try (FileOutputStream fos = new FileOutputStream(convertFile)) {
                 fos.write(file.getBytes());
