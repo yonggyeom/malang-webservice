@@ -35,9 +35,6 @@ public class S3UploaderService {
         InstanceProfileCredentialsProvider instanceProfileCredentialsProvider
                 = new InstanceProfileCredentialsProvider(false);
 
-//        System.out.println(instanceProfileCredentialsProvider.getCredentials().getAWSAccessKeyId());
-//        System.out.println(instanceProfileCredentialsProvider.getCredentials().getAWSSecretKey());
-
         amazonS3Client = AmazonS3ClientBuilder.standard()
                 .withRegion(this.region)
                 .withCredentials(instanceProfileCredentialsProvider)
@@ -51,6 +48,7 @@ public class S3UploaderService {
         System.out.println("fileName : " + fileName);
 
         String uploadImageUrl = putS3(multipartFile, fileName);
+        System.out.println("uploadImageUrl : " + uploadImageUrl);
         return uploadImageUrl;
     }
 
