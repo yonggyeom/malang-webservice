@@ -1,5 +1,6 @@
 package com.malang.webservice.mobile.service;
 
+import com.amazonaws.auth.InstanceProfileCredentialsProvider;
 import com.amazonaws.auth.profile.ProfileCredentialsProvider;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
@@ -31,9 +32,12 @@ public class S3UploaderService {
 
     @PostConstruct
     public void setS3Client() {
+        InstanceProfileCredentialsProvider instanceProfileCredentialsProvider
+                = new InstanceProfileCredentialsProvider(true);
+
         amazonS3Client = AmazonS3ClientBuilder.standard()
                 .withRegion(this.region)
-                .withCredentials(new ProfileCredentialsProvider())
+                .withCredentials(instanceProfileCredentialsProvider)
                 .build();
     }
 
