@@ -81,17 +81,22 @@ public class S3UploaderService {
 
     private Optional<File> convert(MultipartFile file) throws IOException {
         File convertFile = new File(file.getOriginalFilename());
-        System.out.println(convertFile.toPath());
-        Files.setPosixFilePermissions(convertFile.toPath(),
-                EnumSet.of(OWNER_READ, OWNER_WRITE, OWNER_EXECUTE, GROUP_READ, GROUP_EXECUTE));
+//        System.out.println(convertFile.toPath());
+//        Files.setPosixFilePermissions(convertFile.toPath(),
+//                EnumSet.of(OWNER_READ, OWNER_WRITE, OWNER_EXECUTE, GROUP_READ, GROUP_EXECUTE));
 
-        if(convertFile.createNewFile()) {
-            try (FileOutputStream fos = new FileOutputStream(convertFile)) {
-                fos.write(file.getBytes());
-            }
-            return Optional.of(convertFile);
+//        if(convertFile.createNewFile()) {
+//            try (FileOutputStream fos = new FileOutputStream(convertFile)) {
+//                fos.write(file.getBytes());
+//            }
+//            return Optional.of(convertFile);
+//        }
+
+        try (FileOutputStream fos = new FileOutputStream(convertFile)) {
+            fos.write(file.getBytes());
         }
+        return Optional.of(convertFile);
 
-        return Optional.empty();
+//        return Optional.empty();
     }
 }
