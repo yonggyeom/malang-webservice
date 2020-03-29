@@ -1,8 +1,6 @@
 package com.malang.webservice.mobile.service;
 
-import com.amazonaws.auth.AWSCredentials;
-import com.amazonaws.auth.AWSStaticCredentialsProvider;
-import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.auth.profile.ProfileCredentialsProvider;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
@@ -16,24 +14,28 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.PostConstruct;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.util.EnumSet;
-import java.util.Optional;
-
-import static java.nio.file.attribute.PosixFilePermission.*;
 
 @Slf4j
 @RequiredArgsConstructor
 @Component
 public class S3UploaderService {
 
-    private AmazonS3Client amazonS3Client;
+    private AmazonS3 amazonS3Client;
 
     @Value("${cloud.aws.s3.bucket}")
     private String bucket;
+
+    @Value("${cloud.aws.region.static}")
+    private String region;
+
+    @PostConstruct
+    public void setS3Client() {
+        amazonS3Client = AmazonS3ClientBuilder.standard()
+                .withRegion(this.region)
+                .withCredentials(new ProfileCredentialsProvider())
+                .build();
+    }
 
     public String upload(MultipartFile multipartFile, String dirName) throws IOException {
         String fileName = dirName + "/" + multipartFile.getName();
