@@ -28,25 +28,25 @@ public class S3UploaderService {
 
     @Value("${cloud.aws.s3.bucket}")
     private String bucket;
-
-    @Value("${cloud.aws.region.static}")
-    private String region;
-
-    @Value("${cloud.aws.credentials.accessKey}")
-    private String accessKey;
-
-    @Value("${cloud.aws.credentials.secretKey}")
-    private String secretKey;
-
-    @PostConstruct
-    public void setS3Client() {
-        AWSCredentials credentials = new BasicAWSCredentials(this.accessKey, this.secretKey);
-
-        amazonS3Client = AmazonS3ClientBuilder.standard()
-                .withCredentials(new AWSStaticCredentialsProvider(credentials))
-                .withRegion(this.region)
-                .build();
-    }
+//
+//    @Value("${cloud.aws.region.static}")
+//    private String region;
+//
+//    @Value("${cloud.aws.credentials.accessKey}")
+//    private String accessKey;
+//
+//    @Value("${cloud.aws.credentials.secretKey}")
+//    private String secretKey;
+//
+//    @PostConstruct
+//    public void setS3Client() {
+//        AWSCredentials credentials = new BasicAWSCredentials(this.accessKey, this.secretKey);
+//
+//        amazonS3Client = AmazonS3ClientBuilder.standard()
+//                .withCredentials(new AWSStaticCredentialsProvider(credentials))
+//                .withRegion(this.region)
+//                .build();
+//    }
 
     public String upload(MultipartFile multipartFile, String dirName) throws IOException {
         File uploadFile = convert(multipartFile)
