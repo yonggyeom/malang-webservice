@@ -36,6 +36,10 @@ public class S3UploaderService {
 
     public String upload(MultipartFile multipartFile, String dirName) throws IOException {
         String fileName = dirName + "/" + multipartFile.getName();
+        System.out.println("dirName : " + dirName);
+        System.out.println("multipartFile.getName() : " + multipartFile.getName());
+        System.out.println("fileName : " + fileName);
+
         String uploadImageUrl = putS3(multipartFile, fileName);
         return uploadImageUrl;
     }
@@ -43,6 +47,8 @@ public class S3UploaderService {
     private String putS3(MultipartFile multipartFile, String fileName) throws IOException {
         ObjectMetadata metadata = new ObjectMetadata();
         metadata.setContentLength(multipartFile.getSize());
+        System.out.println("multipartFile.getSize() : " + multipartFile.getSize());
+        System.out.println("metadata.getContentLength() : " + metadata.getContentLength());
 
         amazonS3Client.putObject(new PutObjectRequest(bucket, fileName, multipartFile.getInputStream(), metadata).withCannedAcl(CannedAccessControlList.PublicRead));
         return amazonS3Client.getUrl(bucket, fileName).toString();
