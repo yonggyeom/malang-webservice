@@ -33,7 +33,7 @@ public class S3UploaderService {
     @PostConstruct
     public void setS3Client() {
         InstanceProfileCredentialsProvider instanceProfileCredentialsProvider
-                = new InstanceProfileCredentialsProvider(true);
+                = new InstanceProfileCredentialsProvider(false);
 
 //        System.out.println(instanceProfileCredentialsProvider.getCredentials().getAWSAccessKeyId());
 //        System.out.println(instanceProfileCredentialsProvider.getCredentials().getAWSSecretKey());
