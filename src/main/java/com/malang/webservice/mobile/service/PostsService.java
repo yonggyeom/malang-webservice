@@ -33,6 +33,16 @@ public class PostsService {
         return id;
     }
 
+    @Transactional
+    public Long updateImageUrl(Long id, PostsUpdateRequestDto requestDto) {
+        Posts posts = postsRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id=" + id));
+
+        posts.updateImageUrl(requestDto.getImageUrl());
+
+        return id;
+    }
+
     @Transactional(readOnly = true)
     public PostsResponseDto findById(Long id) {
         Posts entity = postsRepository.findById(id)
