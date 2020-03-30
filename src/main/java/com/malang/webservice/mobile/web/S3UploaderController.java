@@ -30,6 +30,6 @@ public class S3UploaderController {
                 .imageUrl(tmpImageUrl)
                 .build();
 
-        return tmpImageUrl;
+        return postsService.updateImageUrl(id, requestDto).toString();
     }
 }
