@@ -12,13 +12,10 @@ public class PostsUpdateRequestDto {
     private String imageUrl;
 
     @Builder
-    public PostsUpdateRequestDto(String title, String content) {
+    public PostsUpdateRequestDto(String title, String content, String imageUrl) {
         this.title = title;
         this.content = content;
-    }
-
-    @Builder
-    public PostsUpdateRequestDto(String imageUrl) {
         this.imageUrl = imageUrl;
     }
+
 }
