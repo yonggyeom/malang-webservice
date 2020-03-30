@@ -23,6 +23,11 @@ public class PostsApiController {
         return postsService.update(id, requestDto);
     }
 
+    @PutMapping("/api/v1/posts/updateImageUrl/{id}")
+    public Long updateImageUrl(@PathVariable Long id, @RequestBody PostsUpdateRequestDto requestDto) {
+        return postsService.updateImageUrl(id, requestDto);
+    }
+
     @GetMapping("/api/v1/posts/find/{id}")
     public PostsResponseDto findById(@PathVariable Long id) {
         return postsService.findById(id);

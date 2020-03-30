@@ -23,13 +23,14 @@ public class S3UploaderController {
     @PostMapping("/upload")
     @ResponseBody
     public String upload(@RequestParam("data") MultipartFile multipartFile, @PathVariable Long id) throws IOException {
-        String tmpImageUrl = s3UploaderService.upload(multipartFile, "static");
+//        String tmpImageUrl = s3UploaderService.upload(multipartFile, "static");
 
         // 아래 부분에 firlUrl 을 PostService 를 통해 Posts 테이블에 url을 저장한다.
-        PostsUpdateRequestDto requestDto = PostsUpdateRequestDto.builder()
-                .imageUrl(tmpImageUrl)
-                .build();
-
-        return postsService.updateImageUrl(id, requestDto).toString();
+//        PostsUpdateRequestDto requestDto = PostsUpdateRequestDto.builder()
+//                .imageUrl(tmpImageUrl)
+//                .build();
+//
+//        return postsService.updateImageUrl(id, requestDto).toString();
+        return s3UploaderService.upload(multipartFile, "static");
     }
 }
