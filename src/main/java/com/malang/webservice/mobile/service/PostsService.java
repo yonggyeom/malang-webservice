@@ -38,9 +38,6 @@ public class PostsService {
         Posts posts = postsRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id=" + id));
 
-        System.out.println("PostsService - id : " + id.toString());
-        System.out.println("PostsService - requestDto.getImageUrl() : " + requestDto.getImageUrl());
-
         posts.updateImageUrl(requestDto.getImageUrl());
 
         return id;

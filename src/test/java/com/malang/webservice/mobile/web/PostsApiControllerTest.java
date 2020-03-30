@@ -119,4 +119,35 @@ public class PostsApiControllerTest {
         assertThat(all.get(0).getContent()).isEqualTo(expectedContent);
     }
 
+    @Test
+    @WithMockUser(roles="USER")
+    public void Posts_URL수정된다() throws Exception {
+        //given
+        Posts savedPosts = postsRepository.save(Posts.builder()
+                .title("title")
+                .author("author")
+                .content("content")
+                .imageUrl("imageUrl")
+                .build());
+
+        Long updateId = savedPosts.getId();
+        String expectedImageUrl = "imageUrl2";
+
+        PostsUpdateRequestDto requestDto = PostsUpdateRequestDto.builder()
+                .imageUrl(expectedImageUrl)
+                .build();
+
+        String url = "http://localhost:" + port + "/api/v1/posts/updateImageUrl/" + updateId;
+
+        //when
+        mvc.perform(put(url)
+                .contentType(MediaType.APPLICATION_JSON_UTF8)
+                .content(new ObjectMapper().writeValueAsString(requestDto)))
+                .andExpect(status().isOk());
+
+        //then
+        List<Posts> all = postsRepository.findAll();
+        assertThat(all.get(0).getImageUrl()).isEqualTo(expectedImageUrl);
+    }
+
 }
