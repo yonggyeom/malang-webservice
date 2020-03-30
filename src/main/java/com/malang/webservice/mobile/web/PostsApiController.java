@@ -25,6 +25,8 @@ public class PostsApiController {
 
     @PutMapping("/api/v1/posts/updateImageUrl/{id}")
     public Long updateImageUrl(@PathVariable Long id, @RequestBody PostsUpdateRequestDto requestDto) {
+        System.out.println("PostsApiController - id : " + id.toString());
+        System.out.println("PostsApiController - requestDto.getImageUrl() : " + requestDto.getImageUrl());
         return postsService.updateImageUrl(id, requestDto);
     }
 
