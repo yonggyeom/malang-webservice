@@ -15,9 +15,9 @@ public class UsersApiController {
 
     private final UsersService usersService;
 
-    @GetMapping("/api/v1/users/findUser/{snsType}/{id}")
-    public UsersResponseDto findUser(@PathVariable String snsType, @PathVariable String id) {
-        return usersService.findUser(snsType, id);
+    @GetMapping("/api/v1/users/findUser/{id}")
+    public UsersResponseDto findUser(@PathVariable String id) {
+        return usersService.findUser(id);
     }
 
 }
