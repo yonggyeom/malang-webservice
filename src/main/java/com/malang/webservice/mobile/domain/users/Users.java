@@ -17,6 +17,7 @@ public class Users extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String birthDate;
     private int candyCnt               ;
     private String googleUserId           ;
     private String kakaoUserId            ;
@@ -36,7 +37,8 @@ public class Users extends BaseTimeEntity {
     private String userPhoneNumber        ;
 
     @Builder
-    public Users(int candyCnt, String googleUserId, String kakaoUserId, String naverUserId, Double latitude, Double longitude, Timestamp latestRecommendedDate, String firstRecommendedUserId, String secondRecommendedUserId, String representativeImageUrl, int reqRecommendationYn, int acquiredScore, int maxScoreCnt, int evaluatorCnt, String representativeUserId, String userNickname, String userPhoneNumber) {
+    public Users(String birthDate, int candyCnt, String googleUserId, String kakaoUserId, String naverUserId, Double latitude, Double longitude, Timestamp latestRecommendedDate, String firstRecommendedUserId, String secondRecommendedUserId, String representativeImageUrl, int reqRecommendationYn, int acquiredScore, int maxScoreCnt, int evaluatorCnt, String representativeUserId, String userNickname, String userPhoneNumber) {
+        this.birthDate = birthDate;
         this.candyCnt = candyCnt;
         this.googleUserId = googleUserId;
         this.kakaoUserId = kakaoUserId;

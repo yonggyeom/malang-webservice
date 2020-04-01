@@ -10,6 +10,7 @@ import java.sql.Timestamp;
 public class UsersResponseDto {
 
     private Long id;
+    private String birthDate ;
     private int candyCnt               ;
     private String googleUserId           ;
     private String kakaoUserId            ;
@@ -30,6 +31,7 @@ public class UsersResponseDto {
 
     public UsersResponseDto(Users entity) {
         this.id           = entity.getId();
+        this.birthDate  = entity.getBirthDate();
         this.candyCnt   = entity.getCandyCnt()               ;
         this.googleUserId = entity.getGoogleUserId()           ;
         this.kakaoUserId = entity.getKakaoUserId()            ;

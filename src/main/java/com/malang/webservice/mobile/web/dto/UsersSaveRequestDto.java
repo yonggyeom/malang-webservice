@@ -12,6 +12,7 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 public class UsersSaveRequestDto {
     private Long id;
+    private String birthDate;
     private int candyCnt               ;
     private String googleUserId           ;
     private String kakaoUserId            ;
@@ -31,8 +32,9 @@ public class UsersSaveRequestDto {
     private String userPhoneNumber        ;
 
     @Builder
-    public UsersSaveRequestDto(Long id, int candyCnt, String googleUserId, String kakaoUserId, String naverUserId, Double latitude, Double longitude, Timestamp latestRecommendedDate, String firstRecommendedUserId, String secondRecommendedUserId, String representativeImageUrl, int reqRecommendationYn, int acquiredScore, int maxScoreCnt, int evaluatorCnt, String representativeUserId, String userNickname, String userPhoneNumber) {
+    public UsersSaveRequestDto(Long id, String birthDate, int candyCnt, String googleUserId, String kakaoUserId, String naverUserId, Double latitude, Double longitude, Timestamp latestRecommendedDate, String firstRecommendedUserId, String secondRecommendedUserId, String representativeImageUrl, int reqRecommendationYn, int acquiredScore, int maxScoreCnt, int evaluatorCnt, String representativeUserId, String userNickname, String userPhoneNumber) {
         this.id = id;
+        this.birthDate = birthDate;
         this.candyCnt = candyCnt;
         this.googleUserId = googleUserId;
         this.kakaoUserId = kakaoUserId;
@@ -54,6 +56,7 @@ public class UsersSaveRequestDto {
 
     public Users toEntity() {
         return Users.builder()
+            .birthDate              (birthDate)
             .candyCnt               (candyCnt)
             .googleUserId           (googleUserId)
             .kakaoUserId            (kakaoUserId)
