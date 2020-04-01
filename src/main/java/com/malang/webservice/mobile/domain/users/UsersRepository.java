@@ -15,6 +15,6 @@ public interface UsersRepository extends JpaRepository<Users, Long> {
 
     //@Query("select  u from    users u where   1=1 and     'google' = :snsType and     u.google_user_id = :id union all select  u from    users u where   1=1 and     'naver' = :snsType and     u.naver_user_id = :id union all select  u from    users u where   1=1 and     'kakao' = :snsType and     u.kakao_user_id = :id")
     //@Query("select u.* from users u where 'google'=:snsType and u.google_user_id=:id")
-    @Query("SELECT u FROM Users u WHERE 1=1 AND (u.googleUserId=:id OR u.naverUserId=:id OR u.kakaoUserId=:id)")
-    Users findUser(@Param("id") String id);
+    @Query("SELECT u FROM Users u WHERE 1=1 AND (u.googleUserId=:userId OR u.naverUserId=:userId OR u.kakaoUserId=:userId)")
+    Users findUser(@Param("userId") String userId);
 }

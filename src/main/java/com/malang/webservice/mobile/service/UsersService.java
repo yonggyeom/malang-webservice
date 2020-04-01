@@ -18,8 +18,8 @@ public class UsersService {
     private final UsersRepository usersRepository;
 
     @Transactional(readOnly = true)
-    public UsersResponseDto findUser(String id) {
-        Users entity = usersRepository.findUser(id);
+    public UsersResponseDto findUser(String userId) {
+        Users entity = usersRepository.findUser(userId);
 
         return new UsersResponseDto(entity);
     }
