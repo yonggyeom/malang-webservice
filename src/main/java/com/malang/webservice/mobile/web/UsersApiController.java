@@ -2,10 +2,7 @@ package com.malang.webservice.mobile.web;
 
 import com.malang.webservice.mobile.service.PostsService;
 import com.malang.webservice.mobile.service.UsersService;
-import com.malang.webservice.mobile.web.dto.PostsResponseDto;
-import com.malang.webservice.mobile.web.dto.PostsSaveRequestDto;
-import com.malang.webservice.mobile.web.dto.PostsUpdateRequestDto;
-import com.malang.webservice.mobile.web.dto.UsersResponseDto;
+import com.malang.webservice.mobile.web.dto.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +11,11 @@ import org.springframework.web.bind.annotation.*;
 public class UsersApiController {
 
     private final UsersService usersService;
+
+    @PostMapping("/api/v1/users")
+    public Long save(@RequestBody UsersSaveRequestDto requestDto) {
+        return usersService.save(requestDto);
+    }
 
     @GetMapping("/api/v1/users/findUser/{userId}")
     public UsersResponseDto findUser(@PathVariable String userId) {

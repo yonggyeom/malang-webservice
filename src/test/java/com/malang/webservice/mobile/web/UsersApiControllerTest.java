@@ -7,6 +7,7 @@ import com.malang.webservice.mobile.domain.users.Users;
 import com.malang.webservice.mobile.domain.users.UsersRepository;
 import com.malang.webservice.mobile.web.dto.PostsSaveRequestDto;
 import com.malang.webservice.mobile.web.dto.PostsUpdateRequestDto;
+import com.malang.webservice.mobile.web.dto.UsersSaveRequestDto;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -60,6 +61,34 @@ public class UsersApiControllerTest {
     @After
     public void tearDown() throws Exception {
         usersRepository.deleteAll();
+    }
+
+    @Test
+    @WithMockUser(roles="USER")
+    public void Users_등록된다() throws Exception {
+        String googleUserId = "googleUserId";
+        String userNickname = "userNickname";
+
+        //given
+        UsersSaveRequestDto requestDto = UsersSaveRequestDto.builder()
+                .googleUserId(googleUserId)
+                .naverUserId("naverUserId")
+                .kakaoUserId("kakaoUserId")
+                .userNickname(userNickname)
+                .userPhoneNumber("userPhoneNumber")
+                .build();
+
+        String url = "http://localhost:" + port + "/api/v1/users";
+
+        //when
+        mvc.perform(post(url)
+                .contentType(MediaType.APPLICATION_JSON_UTF8)
+                .content(new ObjectMapper().writeValueAsString(requestDto)))
+                .andExpect(status().isOk());
+
+        //then
+        List<Users> all = usersRepository.findAll();
+        assertThat(all.get(0).getUserNickname()).isEqualTo(userNickname);
     }
 
     @Test

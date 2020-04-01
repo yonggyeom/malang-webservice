@@ -17,6 +17,11 @@ import java.util.stream.Collectors;
 public class UsersService {
     private final UsersRepository usersRepository;
 
+    @Transactional
+    public Long save(UsersSaveRequestDto requestDto) {
+        return usersRepository.save(requestDto.toEntity()).getId();
+    }
+
     @Transactional(readOnly = true)
     public UsersResponseDto findUser(String userId) {
         Users entity = usersRepository.findUser(userId);
