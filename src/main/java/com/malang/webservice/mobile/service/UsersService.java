@@ -39,4 +39,11 @@ public class UsersService {
         return new UsersResponseDto(entity);
     }
 
+    @Transactional(readOnly = true)
+    public List<UsersListResponseDto> findAllDesc(Long id) {
+        return usersRepository.findAllDesc(id).stream()
+                .map(UsersListResponseDto::new)
+                .collect(Collectors.toList());
+    }
+
 }

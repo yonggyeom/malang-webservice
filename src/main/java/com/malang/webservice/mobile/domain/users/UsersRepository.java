@@ -1,5 +1,6 @@
 package com.malang.webservice.mobile.domain.users;
 
+import com.malang.webservice.mobile.domain.posts.Posts;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -17,4 +18,7 @@ public interface UsersRepository extends JpaRepository<Users, Long> {
     //@Query("select u.* from users u where 'google'=:snsType and u.google_user_id=:id")
     @Query("SELECT u FROM Users u WHERE 1=1 AND (u.googleUserId=:userId OR u.naverUserId=:userId OR u.kakaoUserId=:userId)")
     Users findUser(@Param("userId") String userId);
+
+    @Query("SELECT u FROM Users u ORDER BY u.id DESC")
+    List<Users> findAllDesc(@Param("id") Long id);
 }

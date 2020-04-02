@@ -6,6 +6,8 @@ import com.malang.webservice.mobile.web.dto.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @RestController
 public class UsersApiController {
@@ -25,6 +27,11 @@ public class UsersApiController {
     @GetMapping("/api/v1/users/findUser/{userId}")
     public UsersResponseDto findUser(@PathVariable String userId) {
         return usersService.findUser(userId);
+    }
+
+    @GetMapping("/api/v1/users/findAllUserExceptMe/{id}")
+    public List<UsersListResponseDto> findAllUserExceptMe(@PathVariable Long id) {
+        return usersService.findAllDesc(id);
     }
 
 }

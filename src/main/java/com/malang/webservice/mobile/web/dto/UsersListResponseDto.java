@@ -5,10 +5,10 @@ import com.malang.webservice.mobile.domain.users.Users;
 import lombok.Getter;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Getter
-public class UsersResponseDto {
-
+public class UsersListResponseDto {
     private Long id;
     private String birthDate ;
     private int candyCnt               ;
@@ -29,8 +29,9 @@ public class UsersResponseDto {
     private String userNickname           ;
     private String userPhoneNumber        ;
 
-    public UsersResponseDto(Users entity) {
-        this.id           = entity.getId();
+
+    public UsersListResponseDto(Users entity) {
+        this.id = entity.getId();
         this.birthDate               = entity.getBirthDate()              ;
         this.candyCnt                = entity.getCandyCnt()               ;
         this.googleUserId            = entity.getGoogleUserId()           ;
@@ -50,12 +51,4 @@ public class UsersResponseDto {
         this.userNickname            = entity.getUserNickname()           ;
         this.userPhoneNumber         = entity.getUserPhoneNumber()        ;
     }
-
-    //    public UsersResponseDto(Posts entity) {
-//        this.id = entity.getId();
-//        this.title = entity.getTitle();
-//        this.content = entity.getContent();
-//        this.author = entity.getAuthor();
-//        this.imageUrl = entity.getImageUrl();
-//    }
 }
