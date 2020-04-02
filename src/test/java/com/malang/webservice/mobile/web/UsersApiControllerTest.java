@@ -8,6 +8,7 @@ import com.malang.webservice.mobile.domain.users.UsersRepository;
 import com.malang.webservice.mobile.web.dto.PostsSaveRequestDto;
 import com.malang.webservice.mobile.web.dto.PostsUpdateRequestDto;
 import com.malang.webservice.mobile.web.dto.UsersSaveRequestDto;
+import com.malang.webservice.mobile.web.dto.UsersUpdateRequestDto;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,6 +22,7 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.util.List;
@@ -89,6 +91,34 @@ public class UsersApiControllerTest {
         //then
         List<Users> all = usersRepository.findAll();
         assertThat(all.get(0).getUserNickname()).isEqualTo(userNickname);
+    }
+
+    @Test
+    @WithMockUser(roles="USER")
+    public void Users_수정된다() throws Exception {
+        //given
+        Users savedUsers = usersRepository.save(Users.builder()
+                .googleUserId("googleUserId")
+                .build());
+
+        Long updateId = savedUsers.getId();
+        String expectedGoogleUserId = "googleUserId2";
+
+        UsersUpdateRequestDto requestDto = UsersUpdateRequestDto.builder()
+                .googleUserId(expectedGoogleUserId)
+                .build();
+
+        String url = "http://localhost:" + port + "/api/v1/users/update/" + updateId;
+
+        //when
+        mvc.perform(put(url)
+                .contentType(MediaType.APPLICATION_JSON_UTF8)
+                .content(new ObjectMapper().writeValueAsString(requestDto)))
+                .andExpect(status().isOk());
+
+        //then
+        List<Users> all = usersRepository.findAll();
+        assertThat(all.get(0).getGoogleUserId()).isEqualTo(expectedGoogleUserId);
     }
 
     @Test

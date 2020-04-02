@@ -1,6 +1,7 @@
 package com.malang.webservice.mobile.domain.users;
 
 import com.malang.webservice.mobile.domain.BaseTimeEntity;
+import com.malang.webservice.mobile.web.dto.UsersUpdateRequestDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -56,6 +57,27 @@ public class Users extends BaseTimeEntity {
         this.representativeUserId = representativeUserId;
         this.userNickname = userNickname;
         this.userPhoneNumber = userPhoneNumber;
+    }
+
+    public void update(UsersUpdateRequestDto requestDto) {
+        this.birthDate               = requestDto.getBirthDate();
+        this.candyCnt                = requestDto.getCandyCnt();
+        this.googleUserId            = requestDto.getGoogleUserId();
+        this.kakaoUserId             = requestDto.getKakaoUserId();
+        this.naverUserId             = requestDto.getNaverUserId();
+        this.latitude                = requestDto.getLatitude();
+        this.longitude               = requestDto.getLongitude();
+        this.latestRecommendedDate   = requestDto.getLatestRecommendedDate();
+        this.firstRecommendedUserId  = requestDto.getFirstRecommendedUserId();
+        this.secondRecommendedUserId = requestDto.getSecondRecommendedUserId();
+        this.representativeImageUrl  = requestDto.getRepresentativeImageUrl();
+        this.reqRecommendationYn     = requestDto.getReqRecommendationYn();
+        this.acquiredScore           = requestDto.getAcquiredScore();
+        this.maxScoreCnt             = requestDto.getMaxScoreCnt();
+        this.evaluatorCnt            = requestDto.getEvaluatorCnt();
+        this.representativeUserId    = requestDto.getRepresentativeUserId();
+        this.userNickname            = requestDto.getUserNickname();
+        this.userPhoneNumber         = requestDto.getUserPhoneNumber();
     }
 
 //    public void update(String title, String content) {

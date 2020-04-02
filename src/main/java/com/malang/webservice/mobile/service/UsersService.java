@@ -22,6 +22,16 @@ public class UsersService {
         return usersRepository.save(requestDto.toEntity()).getId();
     }
 
+    @Transactional
+    public Long update(Long id, UsersUpdateRequestDto requestDto) {
+        Users users = usersRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id=" + id));
+
+        users.update(requestDto);
+
+        return id;
+    }
+
     @Transactional(readOnly = true)
     public UsersResponseDto findUser(String userId) {
         Users entity = usersRepository.findUser(userId);
