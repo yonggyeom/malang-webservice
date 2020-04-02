@@ -19,6 +19,6 @@ public interface UsersRepository extends JpaRepository<Users, Long> {
     @Query("SELECT u FROM Users u WHERE 1=1 AND (u.googleUserId=:userId OR u.naverUserId=:userId OR u.kakaoUserId=:userId)")
     Users findUser(@Param("userId") String userId);
 
-    @Query("SELECT u FROM Users u ORDER BY u.id DESC")
+    @Query("SELECT u FROM Users u WHERE u.id != :id ORDER BY u.id DESC")
     List<Users> findAllDesc(@Param("id") Long id);
 }
