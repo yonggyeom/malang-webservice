@@ -21,4 +21,11 @@ public class UsersProfileImagesService {
         return usersProfileImagesRepository.save(requestDto.toEntity()).getId();
     }
 
+    @Transactional(readOnly = true)
+    public List<UsersProfileImagesListResponseDto> findAllMyProfileImages(String representativeUserId) {
+        return usersProfileImagesRepository.findAllMyProfileImages(representativeUserId).stream()
+                .map(UsersProfileImagesListResponseDto::new)
+                .collect(Collectors.toList());
+    }
+
 }

@@ -87,4 +87,31 @@ public class UsersProfileImagesApiControllerTest {
         assertThat(all.get(0).getImageUrl()).isEqualTo(imageUrl);
     }
 
+    @Test
+    @WithMockUser(roles="USER")
+    public void UsersProfileImages_전체조회된다() throws Exception {
+        String imageUrl = "imageUrl";
+
+        //given
+        UsersProfileImages savedUsers = usersProfileImagesRepository.save(UsersProfileImages.builder()
+                .seq(1)
+                .representativeUserId("googleUserId")
+                .representativeYn(1)
+                .imageUrl(imageUrl)
+                .build());
+
+        String getRepresentativeUserId = savedUsers.getRepresentativeUserId();
+
+        String url = "http://localhost:" + port + "/api/v1/usersProfileImages/findAllMyProfileImages/" + getRepresentativeUserId;
+
+        //when
+        mvc.perform(get(url)
+                .contentType(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(status().isOk());
+
+        //then
+        List<UsersProfileImages> all = usersProfileImagesRepository.findAll();
+        assertThat(all.get(0).getImageUrl()).isEqualTo(imageUrl);
+    }
+
 }

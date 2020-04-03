@@ -20,4 +20,8 @@ public class UsersProfileImagesApiController {
         return usersProfileImagesService.save(requestDto);
     }
 
+    @GetMapping("/api/v1/usersProfileImages/findAllMyProfileImages/{representativeUserId}")
+    public List<UsersProfileImagesListResponseDto> findAllMyProfileImages(@PathVariable String representativeUserId) {
+        return usersProfileImagesService.findAllMyProfileImages(representativeUserId);
+    }
 }
