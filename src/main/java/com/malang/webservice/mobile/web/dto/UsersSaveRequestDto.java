@@ -11,7 +11,6 @@ import java.sql.Timestamp;
 @Getter
 @NoArgsConstructor
 public class UsersSaveRequestDto {
-    private Long id;
     private String birthDate;
     private int candyCnt               ;
     private String googleUserId           ;
@@ -32,8 +31,7 @@ public class UsersSaveRequestDto {
     private String userPhoneNumber        ;
 
     @Builder
-    public UsersSaveRequestDto(Long id, String birthDate, int candyCnt, String googleUserId, String kakaoUserId, String naverUserId, Double latitude, Double longitude, Timestamp latestRecommendedDate, String firstRecommendedUserId, String secondRecommendedUserId, String representativeImageUrl, int reqRecommendationYn, int acquiredScore, int maxScoreCnt, int evaluatorCnt, String representativeUserId, String userNickname, String userPhoneNumber) {
-        this.id = id;
+    public UsersSaveRequestDto(String birthDate, int candyCnt, String googleUserId, String kakaoUserId, String naverUserId, Double latitude, Double longitude, Timestamp latestRecommendedDate, String firstRecommendedUserId, String secondRecommendedUserId, String representativeImageUrl, int reqRecommendationYn, int acquiredScore, int maxScoreCnt, int evaluatorCnt, String representativeUserId, String userNickname, String userPhoneNumber) {
         this.birthDate = birthDate;
         this.candyCnt = candyCnt;
         this.googleUserId = googleUserId;

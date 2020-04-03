@@ -6,6 +6,7 @@ import com.malang.webservice.mobile.domain.users.UsersRepository;
 import com.malang.webservice.mobile.domain.users_profile_images.UsersProfileImages;
 import com.malang.webservice.mobile.domain.users_profile_images.UsersProfileImagesRepository;
 import com.malang.webservice.mobile.web.dto.UsersProfileImagesSaveRequestDto;
+import com.malang.webservice.mobile.web.dto.UsersProfileImagesUpdateRequestDto;
 import com.malang.webservice.mobile.web.dto.UsersSaveRequestDto;
 import com.malang.webservice.mobile.web.dto.UsersUpdateRequestDto;
 import org.junit.After;
@@ -140,6 +141,39 @@ public class UsersProfileImagesApiControllerTest {
         //then
         List<UsersProfileImages> all = usersProfileImagesRepository.findAll();
         assertThat(all.get(0).getImageUrl()).isEqualTo(imageUrl);
+    }
+
+    @Test
+    @WithMockUser(roles="USER")
+    public void UsersProfileImages_수정된다() throws Exception {
+        String imageUrl = "imageUrl";
+
+        //given
+        UsersProfileImages savedUsers = usersProfileImagesRepository.save(UsersProfileImages.builder()
+                .seq(1)
+                .representativeUserId("googleUserId")
+                .representativeYn(1)
+                .imageUrl(imageUrl)
+                .build());
+
+        Long updateId = savedUsers.getId();
+        String expectedImageUrl = "imageUrl2";
+
+        UsersProfileImagesUpdateRequestDto requestDto = UsersProfileImagesUpdateRequestDto.builder()
+                .imageUrl(expectedImageUrl)
+                .build();
+
+        String url = "http://localhost:" + port + "/api/v1/usersProfileImages/update/" + updateId;
+
+        //when
+        mvc.perform(put(url)
+                .contentType(MediaType.APPLICATION_JSON_UTF8)
+                .content(new ObjectMapper().writeValueAsString(requestDto)))
+                .andExpect(status().isOk());
+
+        //then
+        List<UsersProfileImages> all = usersProfileImagesRepository.findAll();
+        assertThat(all.get(0).getImageUrl()).isEqualTo(expectedImageUrl);
     }
 
 }

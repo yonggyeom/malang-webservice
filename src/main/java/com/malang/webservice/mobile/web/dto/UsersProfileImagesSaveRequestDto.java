@@ -11,15 +11,13 @@ import java.sql.Timestamp;
 @Getter
 @NoArgsConstructor
 public class UsersProfileImagesSaveRequestDto {
-    private Long id;
     private int seq;
     private String representativeUserId;
     private int representativeYn;
     private String imageUrl;
 
     @Builder
-    public UsersProfileImagesSaveRequestDto(Long id, int seq, String representativeUserId, int representativeYn, String imageUrl) {
-        this.id = id;
+    public UsersProfileImagesSaveRequestDto(int seq, String representativeUserId, int representativeYn, String imageUrl) {
         this.seq = seq;
         this.representativeUserId = representativeUserId;
         this.representativeYn = representativeYn;

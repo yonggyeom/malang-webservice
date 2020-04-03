@@ -36,4 +36,14 @@ public class UsersProfileImagesService {
         return new UsersProfileImagesResponseDto(entity);
     }
 
+    @Transactional
+    public Long update(Long id, UsersProfileImagesUpdateRequestDto requestDto) {
+        UsersProfileImages usersProfileImages = usersProfileImagesRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id=" + id));
+
+        usersProfileImages.update(requestDto);
+
+        return id;
+    }
+
 }

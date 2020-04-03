@@ -29,4 +29,9 @@ public class UsersProfileImagesApiController {
     public UsersProfileImagesResponseDto findUsersProfileImages(@PathVariable String representativeUserId, @PathVariable int seq) {
         return usersProfileImagesService.findUsersProfileImages(representativeUserId, seq);
     }
+
+    @PutMapping("/api/v1/usersProfileImages/update/{id}")
+    public Long update(@PathVariable Long id, @RequestBody UsersProfileImagesUpdateRequestDto requestDto) {
+        return usersProfileImagesService.update(id, requestDto);
+    }
 }
