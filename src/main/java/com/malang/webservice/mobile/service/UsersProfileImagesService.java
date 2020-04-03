@@ -2,6 +2,7 @@ package com.malang.webservice.mobile.service;
 
 import com.malang.webservice.mobile.domain.users.Users;
 import com.malang.webservice.mobile.domain.users.UsersRepository;
+import com.malang.webservice.mobile.domain.users_profile_images.UsersProfileImages;
 import com.malang.webservice.mobile.domain.users_profile_images.UsersProfileImagesRepository;
 import com.malang.webservice.mobile.web.dto.*;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +27,13 @@ public class UsersProfileImagesService {
         return usersProfileImagesRepository.findAllMyProfileImages(representativeUserId).stream()
                 .map(UsersProfileImagesListResponseDto::new)
                 .collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
+    public UsersProfileImagesResponseDto findUsersProfileImages(String representativeUserId, int seq) {
+        UsersProfileImages entity = usersProfileImagesRepository.findUsersProfileImages(representativeUserId, seq);
+
+        return new UsersProfileImagesResponseDto(entity);
     }
 
 }

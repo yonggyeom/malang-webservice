@@ -24,4 +24,9 @@ public class UsersProfileImagesApiController {
     public List<UsersProfileImagesListResponseDto> findAllMyProfileImages(@PathVariable String representativeUserId) {
         return usersProfileImagesService.findAllMyProfileImages(representativeUserId);
     }
+
+    @GetMapping("/api/v1/usersProfileImages/findUsersProfileImages/{representativeUserId}/{seq}")
+    public UsersProfileImagesResponseDto findUsersProfileImages(@PathVariable String representativeUserId, @PathVariable int seq) {
+        return usersProfileImagesService.findUsersProfileImages(representativeUserId, seq);
+    }
 }

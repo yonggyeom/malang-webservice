@@ -16,4 +16,7 @@ public interface UsersProfileImagesRepository extends JpaRepository<UsersProfile
 
     @Query("SELECT u FROM UsersProfileImages u WHERE u.representativeUserId = :representativeUserId ORDER BY u.seq")
     List<UsersProfileImages> findAllMyProfileImages(@Param("representativeUserId") String representativeUserId);
+
+    @Query("SELECT u FROM UsersProfileImages u WHERE u.representativeUserId = :representativeUserId AND u.seq = :seq")
+    UsersProfileImages findUsersProfileImages(@Param("representativeUserId") String representativeUserId, @Param("seq") int seq);
 }
