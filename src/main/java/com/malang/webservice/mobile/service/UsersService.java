@@ -40,6 +40,14 @@ public class UsersService {
     }
 
     @Transactional(readOnly = true)
+    public UsersResponseDto findById(Long id) {
+        Users entity = usersRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id=" + id));
+
+        return new UsersResponseDto(entity);
+    }
+
+    @Transactional(readOnly = true)
     public List<UsersListResponseDto> findAllDesc(Long id) {
         return usersRepository.findAllDesc(id).stream()
                 .map(UsersListResponseDto::new)

@@ -29,6 +29,11 @@ public class UsersApiController {
         return usersService.findUser(userId);
     }
 
+    @GetMapping("/api/v1/users/find/{id}")
+    public UsersResponseDto findById(@PathVariable Long id) {
+        return usersService.findById(id);
+    }
+
     @GetMapping("/api/v1/users/findAllUserExceptMe/{id}")
     public List<UsersListResponseDto> findAllUserExceptMe(@PathVariable Long id) {
         return usersService.findAllDesc(id);

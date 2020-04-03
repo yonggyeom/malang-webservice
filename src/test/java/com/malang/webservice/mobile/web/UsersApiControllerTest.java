@@ -143,13 +143,34 @@ public class UsersApiControllerTest {
                 .contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk());
 
-//        mvc.perform(
-//                get("/hello/dto")
-//                        .param("name", name)
-//                        .param("amount", String.valueOf(amount)))
-//                .andExpect(status().isOk())
-//                .andExpect(jsonPath("$.name", is(name)))
-//                .andExpect(jsonPath("$.amount", is(amount)));
+        //then
+        List<Users> all = usersRepository.findAll();
+        assertThat(all.get(0).getUserNickname()).isEqualTo(userNickname);
+    }
+
+    @Test
+    @WithMockUser(roles="USER")
+    public void Users_조회된다_ById() throws Exception {
+        String googleUserId = "googleUserId";
+        String userNickname = "userNickname";
+
+        //given
+        Users savedUsers = usersRepository.save(Users.builder()
+                .googleUserId(googleUserId)
+                .naverUserId("naverUserId")
+                .kakaoUserId("kakaoUserId")
+                .userNickname(userNickname)
+                .userPhoneNumber("userPhoneNumber")
+                .build());
+
+        Long updateId = savedUsers.getId();
+
+        String url = "http://localhost:" + port + "/api/v1/users/find/" + updateId;
+
+        //when
+        mvc.perform(get(url)
+                .contentType(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(status().isOk());
 
         //then
         List<Users> all = usersRepository.findAll();
