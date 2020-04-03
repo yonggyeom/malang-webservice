@@ -5,6 +5,7 @@ import com.malang.webservice.mobile.domain.users.Users;
 import lombok.Getter;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Getter
 public class UsersResponseDto {
@@ -28,6 +29,8 @@ public class UsersResponseDto {
     private String representativeUserId   ;
     private String userNickname           ;
     private String userPhoneNumber        ;
+    private LocalDateTime createdDate;
+    private LocalDateTime modifiedDate;
 
     public UsersResponseDto(Users entity) {
         this.id           = entity.getId();
@@ -49,6 +52,8 @@ public class UsersResponseDto {
         this.representativeUserId    = entity.getRepresentativeUserId()   ;
         this.userNickname            = entity.getUserNickname()           ;
         this.userPhoneNumber         = entity.getUserPhoneNumber()        ;
+        this.createdDate             = entity.getCreatedDate()            ;
+        this.modifiedDate            = entity.getModifiedDate()           ;
     }
 
     //    public UsersResponseDto(Posts entity) {

@@ -28,6 +28,8 @@ public class UsersListResponseDto {
     private String representativeUserId   ;
     private String userNickname           ;
     private String userPhoneNumber        ;
+    private LocalDateTime createdDate;
+    private LocalDateTime modifiedDate;
 
 
     public UsersListResponseDto(Users entity) {
@@ -50,5 +52,7 @@ public class UsersListResponseDto {
         this.representativeUserId    = entity.getRepresentativeUserId()   ;
         this.userNickname            = entity.getUserNickname()           ;
         this.userPhoneNumber         = entity.getUserPhoneNumber()        ;
+        this.createdDate             = entity.getCreatedDate()            ;
+        this.modifiedDate            = entity.getModifiedDate()           ;
     }
 }
