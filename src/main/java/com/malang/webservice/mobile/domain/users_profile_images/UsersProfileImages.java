@@ -34,6 +34,7 @@ public class UsersProfileImages extends BaseTimeEntity {
         this.imageUrl = imageUrl;
     }
 
+    // update
     public void update(UsersProfileImagesUpdateRequestDto requestDto) {
         this.seq                  = requestDto.getSeq();
         this.representativeUserId = requestDto.getRepresentativeUserId();
