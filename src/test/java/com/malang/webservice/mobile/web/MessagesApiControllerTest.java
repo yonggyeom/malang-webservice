@@ -3,12 +3,10 @@ package com.malang.webservice.mobile.web;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.malang.webservice.mobile.domain.chats.Chats;
 import com.malang.webservice.mobile.domain.chats.ChatsRepository;
-import com.malang.webservice.mobile.domain.users.Users;
-import com.malang.webservice.mobile.domain.users_profile_images.UsersProfileImages;
-import com.malang.webservice.mobile.domain.users_profile_images.UsersProfileImagesRepository;
+import com.malang.webservice.mobile.domain.messages.Messages;
+import com.malang.webservice.mobile.domain.messages.MessagesRepository;
 import com.malang.webservice.mobile.web.dto.ChatsSaveRequestDto;
-import com.malang.webservice.mobile.web.dto.UsersProfileImagesSaveRequestDto;
-import com.malang.webservice.mobile.web.dto.UsersProfileImagesUpdateRequestDto;
+import com.malang.webservice.mobile.web.dto.MessagesSaveRequestDto;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -28,12 +26,13 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class ChatsApiControllerTest {
+public class MessagesApiControllerTest {
 
     @LocalServerPort
     private int port;
@@ -42,7 +41,7 @@ public class ChatsApiControllerTest {
     private TestRestTemplate restTemplate;
 
     @Autowired
-    private ChatsRepository chatsRepository;
+    private MessagesRepository messagesRepository;
 
     @Autowired
     private WebApplicationContext context;
@@ -59,23 +58,22 @@ public class ChatsApiControllerTest {
 
     @After
     public void tearDown() throws Exception {
-        chatsRepository.deleteAll();
+        messagesRepository.deleteAll();
     }
 
     @Test
     @WithMockUser(roles="USER")
-    public void Chats_등록된다() throws Exception {
-        String senderUserId = "senderUserId";
+    public void Messages_등록된다() throws Exception {
+        String fromUserId = "fromUserId";
 
         //given
-        ChatsSaveRequestDto requestDto = ChatsSaveRequestDto.builder()
+        MessagesSaveRequestDto requestDto = MessagesSaveRequestDto.builder()
                 .chatId("chatId")
-                .senderUserId(senderUserId)
-                .receiverUserId("receiverUserId")
-                .approvalYn(0)
+                .fromUserId(fromUserId)
+                .text("text")
                 .build();
 
-        String url = "http://localhost:" + port + "/api/v1/chats";
+        String url = "http://localhost:" + port + "/api/v1/messages";
 
         //when
         mvc.perform(post(url)
@@ -84,35 +82,8 @@ public class ChatsApiControllerTest {
                 .andExpect(status().isOk());
 
         //then
-        List<Chats> all = chatsRepository.findAll();
-        assertThat(all.get(0).getSenderUserId()).isEqualTo(senderUserId);
-    }
-
-    @Test
-    @WithMockUser(roles="USER")
-    public void Chats_조회된다() throws Exception {
-        String senderUserId = "senderUserId";
-
-        //given
-        Chats savedChats = chatsRepository.save(Chats.builder()
-                .chatId("chatId")
-                .senderUserId(senderUserId)
-                .receiverUserId("receiverUserId")
-                .approvalYn(0)
-                .build());
-
-        String getChatId = savedChats.getChatId();
-
-        String url = "http://localhost:" + port + "/api/v1/chats/findChat/" + getChatId + "/" + senderUserId;
-
-        //when
-        mvc.perform(get(url)
-                .contentType(MediaType.APPLICATION_JSON_UTF8))
-                .andExpect(status().isOk());
-
-        //then
-        List<Chats> all = chatsRepository.findAll();
-        assertThat(all.get(0).getSenderUserId()).isEqualTo(senderUserId);
+        List<Messages> all = messagesRepository.findAll();
+        assertThat(all.get(0).getFromUserId()).isEqualTo(fromUserId);
     }
 
 }
