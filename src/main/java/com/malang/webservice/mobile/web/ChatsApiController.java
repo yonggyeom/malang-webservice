@@ -19,8 +19,8 @@ public class ChatsApiController {
         return chatsService.save(requestDto);
     }
 
-    @GetMapping("/api/v1/chats/findChat/{chatId}")
-    public ChatsResponseDto findChat(@PathVariable String chatId) {
-        return chatsService.findChat(chatId);
+    @GetMapping("/api/v1/chats/findChat/{chatId}/{senderUserId}")
+    public ChatsResponseDto findChat(@PathVariable String chatId, @PathVariable String senderUserId) {
+        return chatsService.findChat(chatId, senderUserId);
     }
 }

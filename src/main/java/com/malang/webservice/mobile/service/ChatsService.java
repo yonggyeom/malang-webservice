@@ -24,8 +24,8 @@ public class ChatsService {
     }
 
     @Transactional(readOnly = true)
-    public ChatsResponseDto findChat(String chatId) {
-        Chats entity = chatsRepository.findChat(chatId);
+    public ChatsResponseDto findChat(String chatId, String senderUserId) {
+        Chats entity = chatsRepository.findChat(chatId, senderUserId);
 
         return new ChatsResponseDto(entity);
     }

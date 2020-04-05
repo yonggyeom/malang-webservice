@@ -8,6 +8,6 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface ChatsRepository extends JpaRepository<Chats, Long> {
-    @Query("SELECT u FROM Chats u WHERE u.chatId = :chatId AND ROWNUM = 1")
-    Chats findChat(@Param("chatId") String chatId);
+    @Query("SELECT u FROM Chats u WHERE u.chatId = :chatId AND u.senderUserId = :senderUserId")
+    Chats findChat(@Param("chatId") String chatId, @Param("senderUserId") String senderUserId);
 }

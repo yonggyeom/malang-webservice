@@ -103,7 +103,7 @@ public class ChatsApiControllerTest {
 
         String getChatId = savedChats.getChatId();
 
-        String url = "http://localhost:" + port + "/api/v1/chats/findChat/" + getChatId;
+        String url = "http://localhost:" + port + "/api/v1/chats/findChat/" + getChatId + "/" + senderUserId;
 
         //when
         mvc.perform(get(url)
