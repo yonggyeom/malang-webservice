@@ -1,6 +1,8 @@
 package com.malang.webservice.mobile.service;
 
+import com.malang.webservice.mobile.domain.chats.Chats;
 import com.malang.webservice.mobile.domain.chats.ChatsRepository;
+import com.malang.webservice.mobile.domain.users.Users;
 import com.malang.webservice.mobile.domain.users_profile_images.UsersProfileImages;
 import com.malang.webservice.mobile.domain.users_profile_images.UsersProfileImagesRepository;
 import com.malang.webservice.mobile.web.dto.*;
@@ -21,4 +23,10 @@ public class ChatsService {
         return chatsRepository.save(requestDto.toEntity()).getId();
     }
 
+    @Transactional(readOnly = true)
+    public ChatsResponseDto findChat(String chatId) {
+        Chats entity = chatsRepository.findChat(chatId);
+
+        return new ChatsResponseDto(entity);
+    }
 }

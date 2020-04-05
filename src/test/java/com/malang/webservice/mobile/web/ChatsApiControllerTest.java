@@ -3,6 +3,7 @@ package com.malang.webservice.mobile.web;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.malang.webservice.mobile.domain.chats.Chats;
 import com.malang.webservice.mobile.domain.chats.ChatsRepository;
+import com.malang.webservice.mobile.domain.users.Users;
 import com.malang.webservice.mobile.domain.users_profile_images.UsersProfileImages;
 import com.malang.webservice.mobile.domain.users_profile_images.UsersProfileImagesRepository;
 import com.malang.webservice.mobile.web.dto.ChatsSaveRequestDto;
@@ -80,6 +81,33 @@ public class ChatsApiControllerTest {
         mvc.perform(post(url)
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
                 .content(new ObjectMapper().writeValueAsString(requestDto)))
+                .andExpect(status().isOk());
+
+        //then
+        List<Chats> all = chatsRepository.findAll();
+        assertThat(all.get(0).getSenderUserId()).isEqualTo(senderUserId);
+    }
+
+    @Test
+    @WithMockUser(roles="USER")
+    public void Users_조회된다() throws Exception {
+        String senderUserId = "senderUserId";
+
+        //given
+        Chats savedChats = chatsRepository.save(Chats.builder()
+                .chatId("chatId")
+                .senderUserId(senderUserId)
+                .receiverUserId("receiverUserId")
+                .approvalYn(0)
+                .build());
+
+        String getChatId = savedChats.getChatId();
+
+        String url = "http://localhost:" + port + "/api/v1/chats/findChat/" + getChatId;
+
+        //when
+        mvc.perform(get(url)
+                .contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk());
 
         //then
