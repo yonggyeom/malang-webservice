@@ -11,6 +11,6 @@ public interface ChatsRepository extends JpaRepository<Chats, Long> {
     @Query("SELECT u FROM Chats u WHERE u.chatId = :chatId AND u.senderUserId = :senderUserId")
     Chats findChat(@Param("chatId") String chatId, @Param("senderUserId") String senderUserId);
 
-    @Query("SELECT u FROM Chats u WHERE u.senderUserId != :senderUserId ORDER BY u.id")
+    @Query("SELECT u FROM Chats u WHERE u.senderUserId = :senderUserId ORDER BY u.id")
     List<Chats> findAllUserExceptMe(@Param("senderUserId") String senderUserId);
 }
