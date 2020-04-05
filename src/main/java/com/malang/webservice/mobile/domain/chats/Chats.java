@@ -1,7 +1,9 @@
 package com.malang.webservice.mobile.domain.chats;
 
 import com.malang.webservice.mobile.domain.BaseTimeEntity;
+import com.malang.webservice.mobile.web.dto.ChatsUpdateRequestDto;
 import com.malang.webservice.mobile.web.dto.UsersProfileImagesUpdateRequestDto;
+import com.malang.webservice.mobile.web.dto.UsersUpdateRequestDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,6 +30,13 @@ public class Chats extends BaseTimeEntity {
         this.senderUserId = senderUserId;
         this.receiverUserId = receiverUserId;
         this.approvalYn = approvalYn;
+    }
+
+    public void update(ChatsUpdateRequestDto requestDto) {
+        this.chatId                 = requestDto.getChatId();
+        this.senderUserId           = requestDto.getSenderUserId();
+        this.receiverUserId         = requestDto.getReceiverUserId();
+        this.approvalYn             = requestDto.getApprovalYn();
     }
 
 }

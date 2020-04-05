@@ -23,4 +23,14 @@ public class ChatsApiController {
     public ChatsResponseDto findChat(@PathVariable String chatId, @PathVariable String senderUserId) {
         return chatsService.findChat(chatId, senderUserId);
     }
+
+    @PutMapping("/api/v1/chats/update/{id}")
+    public Long update(@PathVariable Long id, @RequestBody ChatsUpdateRequestDto requestDto) {
+        return chatsService.update(id, requestDto);
+    }
+
+    @GetMapping("/api/v1/chats/findAllChatForMe/{senderUserId}")
+    public List<ChatsListResponseDto> findAllUserExceptMe(@PathVariable String senderUserId) {
+        return chatsService.findAllUserExceptMe(senderUserId);
+    }
 }

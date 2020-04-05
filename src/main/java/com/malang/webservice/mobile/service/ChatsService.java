@@ -29,4 +29,21 @@ public class ChatsService {
 
         return new ChatsResponseDto(entity);
     }
+
+    @Transactional
+    public Long update(Long id, ChatsUpdateRequestDto requestDto) {
+        Chats chats = chatsRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 채팅방이 없습니다. id=" + id));
+
+        chats.update(requestDto);
+
+        return id;
+    }
+
+    @Transactional(readOnly = true)
+    public List<ChatsListResponseDto> findAllUserExceptMe(String senderUserId) {
+        return chatsRepository.findAllUserExceptMe(senderUserId).stream()
+                .map(ChatsListResponseDto::new)
+                .collect(Collectors.toList());
+    }
 }
