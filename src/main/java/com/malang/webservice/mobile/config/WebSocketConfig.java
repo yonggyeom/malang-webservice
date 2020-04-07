@@ -26,10 +26,10 @@ public class WebSocketConfig implements WebSocketConfigurer{
     }
 
     // Of course , you can define the Executor too
-    // @Bean
-    // public Executor taskExecutor() {
-    //     return new SimpleAsyncTaskExecutor();
-    // }
+    @Bean
+    public Executor taskExecutor() {
+        return new SimpleAsyncTaskExecutor();
+    }
 
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
