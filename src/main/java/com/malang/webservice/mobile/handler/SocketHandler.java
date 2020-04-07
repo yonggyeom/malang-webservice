@@ -16,6 +16,7 @@ public class SocketHandler extends TextWebSocketHandler {
     @Override
     public void handleTextMessage(WebSocketSession session, TextMessage message) {
         //메시지 발송
+        System.out.println("handleTextMessage called : " + session.getId() + " / message : " + message.getPayload());
         String msg = message.getPayload();
         for(String key : sessionMap.keySet()) {
             WebSocketSession wss = sessionMap.get(key);
@@ -30,6 +31,7 @@ public class SocketHandler extends TextWebSocketHandler {
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
         //소켓 연결
+        System.out.println("afterConnectionEstablished called : " + session.getId());
         super.afterConnectionEstablished(session);
         sessionMap.put(session.getId(), session);
     }
@@ -37,6 +39,7 @@ public class SocketHandler extends TextWebSocketHandler {
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
         //소켓 종료
+        System.out.println("afterConnectionClosed called : " + session.getId());
         sessionMap.remove(session.getId());
         super.afterConnectionClosed(session, status);
     }
