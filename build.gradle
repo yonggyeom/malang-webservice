@@ -53,6 +53,8 @@ dependencies {
 
     // 2020.03.25 S3 업로더를 위한 추가(대안책)
     // compile('com.amazonaws:aws-java-sdk-s3')
+
+    compile('org.springframework.boot:spring-boot-starter-websocket')
 }
 
 dependencyManagement {
