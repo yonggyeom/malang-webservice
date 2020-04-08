@@ -24,11 +24,13 @@ public class SocketHandler extends TextWebSocketHandler {
 
     @Override
     public void handleTextMessage(WebSocketSession session, TextMessage message) {
+        // 여기는 메시지가 수신되자마자 처리되는 부분이므로, Messages Entity의 save 기능을 처리해서 매번 메시지를 저장한다.
+
+
         //메시지 발송
 //        Map value = new Gson().fromJson(message.getPayload(), Map.class);
 //        System.out.println("handleTextMessage called : " + session.getId() + " / message : " + value.get("text").toString());
 //        String msg = value.get("text").toString();
-        //메시지 발송
         String msg = message.getPayload();
         System.out.println(msg);
         JSONObject obj = jsonToObjectParser(msg);
@@ -101,7 +103,7 @@ public class SocketHandler extends TextWebSocketHandler {
         JSONObject obj = new JSONObject();
         obj.put("type", "getId");
         obj.put("sessionId", session.getId());
-        session.sendMessage(new TextMessage(obj.toJSONString()));
+        //session.sendMessage(new TextMessage(obj.toJSONString()));
     }
 
     @Override
