@@ -35,7 +35,7 @@ public class SocketHandler extends TextWebSocketHandler {
         System.out.println(obj.toString());
 
         String rN = (String) obj.get("roomNumber");
-        System.out.println("rN : " + rN);
+        System.out.println("rN  : " + rN);
         HashMap<String, Object> temp = new HashMap<String, Object>();
 
         if(rls.size() > 0) {
