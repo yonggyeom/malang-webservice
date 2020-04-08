@@ -1,3 +1,51 @@
+//var ws;
+//
+//	function wsOpen(){
+//	    alert("웹소켓 오픈하기 이전");
+//		ws = new WebSocket("ws://localhost:8082/chating");
+//		alert("웹소켓 오픈하기 이후" + ws);
+//		console.log('ws:', ws);
+//		wsEvt();
+//	}
+//
+//	function wsEvt() {
+//		ws.onopen = function(data){
+//			//소켓이 열리면 초기화 세팅하기
+//		}
+//
+//		ws.onmessage = function(data) {
+//			var msg = data.data;
+//			if(msg != null && msg.trim() != ''){
+//				$("#chatting").append("<p>" + msg + "</p>");
+//			}
+//		}
+//
+//		document.addEventListener("keypress", function(e){
+//			if(e.keyCode == 13){ //enter press
+//				send();
+//			}
+//		});
+//	}
+//
+//	function chatName(){
+//		var userName = $("#userName").val();
+//		if(userName == null || userName.trim() == ""){
+//			alert("사용자 이름을 입력해주세요.");
+//			$("#userName").focus();
+//		}else{
+//			wsOpen();
+//			$("#yourName").hide();
+//			$("#yourMsg").show();
+//		}
+//	}
+//
+//	function send() {
+//		var uN = $("#userName").val();
+//		var msg = $("#chatting").val();
+//		ws.send(uN+" : "+msg);
+//		$('#chatting').val("");
+//	}
+
 var main = {
     init : function (){
         var _this = this;
