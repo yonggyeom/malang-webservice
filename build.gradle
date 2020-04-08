@@ -62,6 +62,8 @@ dependencies {
     compile("org.webjars:jquery:3.1.0")
 
     compile('com.google.code.gson:gson:2.8.6')
+
+    compile 'com.googlecode.json-simple:json-simple:1.1.1'
 }
 
 dependencyManagement {
