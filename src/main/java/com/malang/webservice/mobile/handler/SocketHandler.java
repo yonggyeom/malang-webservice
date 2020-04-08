@@ -1,5 +1,6 @@
 package com.malang.webservice.mobile.handler;
 
+import com.google.gson.Gson;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
@@ -7,6 +8,7 @@ import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import java.util.HashMap;
+import java.util.Map;
 
 @Component
 public class SocketHandler extends TextWebSocketHandler {
@@ -16,8 +18,9 @@ public class SocketHandler extends TextWebSocketHandler {
     @Override
     public void handleTextMessage(WebSocketSession session, TextMessage message) {
         //메시지 발송
-        System.out.println("handleTextMessage called : " + session.getId() + " / message : " + message.getPayload());
-        String msg = message.getPayload();
+        Map value = new Gson().fromJson(message.getPayload(), Map.class);
+        System.out.println("handleTextMessage called : " + session.getId() + " / message : " + value.get("text").toString());
+        String msg = value.get("text").toString();
         for(String key : sessionMap.keySet()) {
             WebSocketSession wss = sessionMap.get(key);
             try {
