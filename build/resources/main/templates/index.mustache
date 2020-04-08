@@ -1,44 +1,96 @@
-
-{{>layout/header}}
-
-<h1>스프링부트로 시작하는 웹 서비스 Ver.8</h1>
-<div class="col-md-12">
-    <!-- 로그인 기능 영역 -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hello WebSocket</title>
+    <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/main.css" rel="stylesheet">
+    <script src="/webjars/jquery/jquery.min.js"></script>
+    <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+    <script src="/webjars/stomp-websocket/stomp.min.js"></script>
+    <script src="/app.js"></script>
+</head>
+<body>
+<noscript><h2 style="color: #ff0000">Seems your browser doesn't support Javascript! Websocket relies on Javascript being enabled. Please enable Javascript and reload this page!</h2></noscript>
+<div id="main-content" class="container">
     <div class="row">
         <div class="col-md-6">
-            <a href="/posts/save" role="button" class="btn btn-primary">글 등록</a>
-                    {{#userName}}
-                Logged in as: <span id="user">{{userName}}</span>
-                <a href="/logout" class="btn btn-info active" role="button">Logout</a>
-                    {{/userName}}
-                    {{^userName}}
-                <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">Google Login</a>
-                <a href="/oauth2/authorization/naver" class="btn btn-secondary active" role="button">Naver Login</a>
-                    {{/userName}}
+            <form class="form-inline">
+                <div class="form-group">
+                    <label for="connect">WebSocket connection:</label>
+                    <button id="connect" class="btn btn-default" type="submit">Connect</button>
+                    <button id="disconnect" class="btn btn-default" type="submit" disabled="disabled">Disconnect
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <form class="form-inline">
+                <div class="form-group">
+                    <label for="name">What is your name?</label>
+                    <input type="text" id="name" class="form-control" placeholder="Your name here...">
+                </div>
+                <button id="send" class="btn btn-default" type="submit">Send</button>
+            </form>
         </div>
     </div>
-    <br>
-    <!-- 목록 출력 영역 -->
-    <table class="table table-horizontal table-bordered">
-        <thead class="thead-strong">
-        <tr>
-            <th>게시글번호</th>
-            <th>제목</th>
-            <th>작성자</th>
-            <th>최종수정일</th>
-        </tr>
-        </thead>
-        <tbody id="tbody">
-                {{#posts}}
-            <tr>
-                <td>{{id}}</td>
-                <td><a href="/posts/update/{{id}}">{{title}}</a></td>
-                <td>{{author}}</td>
-                <td>{{modifiedDate}}</td>
-            </tr>
-                {{/posts}}
-        </tbody>
-    </table>
+    <div class="row">
+        <div class="col-md-12">
+            <table id="conversation" class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Greetings</th>
+                </tr>
+                </thead>
+                <tbody id="greetings">
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
+</body>
+</html>
 
-{{>layout/footer}}
+
+<!--{{>layout/header}}-->
+
+<!--<h1>스프링부트로 시작하는 웹 서비스 Ver.8</h1>-->
+<!--<div class="col-md-12">-->
+<!--    &lt;!&ndash; 로그인 기능 영역 &ndash;&gt;-->
+<!--    <div class="row">-->
+<!--        <div class="col-md-6">-->
+<!--            <a href="/posts/save" role="button" class="btn btn-primary">글 등록</a>-->
+<!--                    {{#userName}}-->
+<!--                Logged in as: <span id="user">{{userName}}</span>-->
+<!--                <a href="/logout" class="btn btn-info active" role="button">Logout</a>-->
+<!--                    {{/userName}}-->
+<!--                    {{^userName}}-->
+<!--                <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">Google Login</a>-->
+<!--                <a href="/oauth2/authorization/naver" class="btn btn-secondary active" role="button">Naver Login</a>-->
+<!--                    {{/userName}}-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <br>-->
+<!--    &lt;!&ndash; 목록 출력 영역 &ndash;&gt;-->
+<!--    <table class="table table-horizontal table-bordered">-->
+<!--        <thead class="thead-strong">-->
+<!--        <tr>-->
+<!--            <th>게시글번호</th>-->
+<!--            <th>제목</th>-->
+<!--            <th>작성자</th>-->
+<!--            <th>최종수정일</th>-->
+<!--        </tr>-->
+<!--        </thead>-->
+<!--        <tbody id="tbody">-->
+<!--                {{#posts}}-->
+<!--            <tr>-->
+<!--                <td>{{id}}</td>-->
+<!--                <td><a href="/posts/update/{{id}}">{{title}}</a></td>-->
+<!--                <td>{{author}}</td>-->
+<!--                <td>{{modifiedDate}}</td>-->
+<!--            </tr>-->
+<!--                {{/posts}}-->
+<!--        </tbody>-->
+<!--    </table>-->
+<!--</div>-->
+
+<!--{{>layout/footer}}-->
