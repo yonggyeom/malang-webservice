@@ -5,6 +5,7 @@ import com.malang.webservice.mobile.domain.chats.Chats;
 import com.malang.webservice.mobile.domain.chats.ChatsRepository;
 import com.malang.webservice.mobile.domain.messages.Messages;
 import com.malang.webservice.mobile.domain.messages.MessagesRepository;
+import com.malang.webservice.mobile.domain.users.Users;
 import com.malang.webservice.mobile.web.dto.ChatsSaveRequestDto;
 import com.malang.webservice.mobile.web.dto.MessagesSaveRequestDto;
 import org.junit.After;
@@ -86,4 +87,29 @@ public class MessagesApiControllerTest {
         assertThat(all.get(0).getFromUserId()).isEqualTo(fromUserId);
     }
 
+    @Test
+    @WithMockUser(roles="USER")
+    public void Messages_전체조회된다() throws Exception {
+        String text = "text";
+
+        //given
+        Messages savedMessages = messagesRepository.save(Messages.builder()
+                .chatId("chatId")
+                .fromUserId("fromUserId")
+                .text(text)
+                .build());
+
+        String getChatId = savedMessages.getChatId();
+
+        String url = "http://localhost:" + port + "/api/v1/messages/findAllMyMessages/" + getChatId;
+
+        //when
+        mvc.perform(get(url)
+                .contentType(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(status().isOk());
+
+        //then
+        List<Messages> all = messagesRepository.findAll();
+        assertThat(all.get(0).getText()).isEqualTo(text);
+    }
 }
