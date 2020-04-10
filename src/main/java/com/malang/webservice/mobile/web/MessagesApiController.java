@@ -19,8 +19,8 @@ public class MessagesApiController {
         return messagesService.save(requestDto);
     }
 
-    @GetMapping("/api/v1/messages/findAllMyMessages/{chatId}")
-    public List<MessagesListResponseDto> findAllUserExceptMe(@PathVariable String chatId) {
-        return messagesService.findAllDesc(chatId);
+    @GetMapping("/api/v1/messages/findAllMyMessages/{chatId}/{id}")
+    public List<MessagesListResponseDto> findAllUserExceptMe(@PathVariable String chatId, @PathVariable Long id) {
+        return messagesService.findAllDesc(chatId, id);
     }
 }

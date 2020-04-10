@@ -28,8 +28,8 @@ public class MessagesService {
     }
 
     @Transactional(readOnly = true)
-    public List<MessagesListResponseDto> findAllDesc(String chatId) {
-        return messagesRepository.findAllDesc(chatId).stream()
+    public List<MessagesListResponseDto> findAllDesc(String chatId, Long id) {
+        return messagesRepository.findAllDesc(chatId, id).stream()
                 .map(MessagesListResponseDto::new)
                 .collect(Collectors.toList());
     }

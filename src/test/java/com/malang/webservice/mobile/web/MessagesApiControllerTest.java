@@ -101,7 +101,7 @@ public class MessagesApiControllerTest {
 
         String getChatId = savedMessages.getChatId();
 
-        String url = "http://localhost:" + port + "/api/v1/messages/findAllMyMessages/" + getChatId;
+        String url = "http://localhost:" + port + "/api/v1/messages/findAllMyMessages/" + getChatId + "/0";
 
         //when
         mvc.perform(get(url)

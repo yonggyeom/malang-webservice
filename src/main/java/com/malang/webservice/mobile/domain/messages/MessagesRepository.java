@@ -8,6 +8,6 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface MessagesRepository extends JpaRepository<Messages, Long> {
-    @Query("SELECT u FROM Messages u WHERE u.chatId = :chatId ORDER BY u.createdDate")
-    List<Messages> findAllDesc(@Param("chatId") String chatId);
+    @Query("SELECT u FROM Messages u WHERE u.chatId = :chatId AND u.id >= :id ORDER BY u.createdDate")
+    List<Messages> findAllDesc(@Param("chatId") String chatId, @Param("id") Long id);
 }
