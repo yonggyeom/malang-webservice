@@ -54,7 +54,7 @@ public class SocketHandler extends TextWebSocketHandler {
         Messages tmpMessage = messagesService.saveMessageReturnEntity(requestDto);
 
         obj.put("id", tmpMessage.getId());
-        obj.put("createdDate", tmpMessage.getCreatedDate());
+        obj.put("createdDate", tmpMessage.getCreatedDate().toString());
 
         if(rls.size() > 0) {
             for(int i=0; i<rls.size(); i++) {
