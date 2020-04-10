@@ -102,7 +102,7 @@ public class StoriesApiControllerTest {
 
         String getRepresentativeUserId = savedStories.getRepresentativeUserId();
 
-        String url = "http://localhost:" + port + "/api/v1/stories/findAllStoriesExceptMe/" + getRepresentativeUserId;
+        String url = "http://localhost:" + port + "/api/v1/stories/findAllStories/" + getRepresentativeUserId;
 
         //when
         mvc.perform(get(url)

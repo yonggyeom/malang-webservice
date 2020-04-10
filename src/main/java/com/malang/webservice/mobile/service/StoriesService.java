@@ -22,8 +22,8 @@ public class StoriesService {
     }
 
     @Transactional(readOnly = true)
-    public List<StoriesListResponseDto> findAllDesc(String representativeUserId) {
-        return storiesRepository.findAllDesc(representativeUserId).stream()
+    public List<StoriesListResponseDto> findAllStories(String representativeUserId) {
+        return storiesRepository.findAllStories(representativeUserId).stream()
                 .map(StoriesListResponseDto::new)
                 .collect(Collectors.toList());
     }

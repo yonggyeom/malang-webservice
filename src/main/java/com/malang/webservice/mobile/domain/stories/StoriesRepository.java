@@ -8,6 +8,6 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface StoriesRepository extends JpaRepository<Stories, Long> {
-    @Query("SELECT u FROM Stories u WHERE u.representativeUserId != :representativeUserId ORDER BY u.createdDate DESC")
-    List<Stories> findAllDesc(@Param("representativeUserId") String representativeUserId);
+    @Query("SELECT u FROM Stories u ORDER BY u.createdDate DESC")
+    List<Stories> findAllStories(@Param("representativeUserId") String representativeUserId);
 }

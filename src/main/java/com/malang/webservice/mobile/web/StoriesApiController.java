@@ -19,9 +19,9 @@ public class StoriesApiController {
         return storiesService.save(requestDto);
     }
 
-    @GetMapping("/api/v1/stories/findAllStoriesExceptMe/{representativeUserId}")
-    public List<StoriesListResponseDto> findAllUserExceptMe(@PathVariable String representativeUserId) {
-        return storiesService.findAllDesc(representativeUserId);
+    @GetMapping("/api/v1/stories/findAllStories/{representativeUserId}")
+    public List<StoriesListResponseDto> findAllStories(@PathVariable String representativeUserId) {
+        return storiesService.findAllStories(representativeUserId);
     }
 
 }
