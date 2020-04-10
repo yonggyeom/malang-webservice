@@ -1,6 +1,7 @@
 package com.malang.webservice.mobile.handler;
 
 import com.google.gson.Gson;
+import com.malang.webservice.mobile.domain.messages.Messages;
 import com.malang.webservice.mobile.service.MessagesService;
 import com.malang.webservice.mobile.web.dto.MessagesSaveRequestDto;
 import lombok.RequiredArgsConstructor;
@@ -39,18 +40,21 @@ public class SocketHandler extends TextWebSocketHandler {
         JSONObject obj = jsonToObjectParser(msg);
         System.out.println(obj.toString());
 
-        String rN = (String) obj.get("chat_id");
+        String rN = (String) obj.get("chatId");
         System.out.println("rN  : " + rN);
         HashMap<String, Object> temp = new HashMap<String, Object>();
 
         // 여기는 메시지가 수신되자마자 처리되는 부분이므로, Messages Entity의 save 기능을 처리해서 매번 메시지를 저장한다.
         MessagesSaveRequestDto requestDto = MessagesSaveRequestDto.builder()
-                .chatId(obj.get("chat_id").toString())
-                .fromUserId(obj.get("from").toString())
+                .chatId(obj.get("chatId").toString())
+                .fromUserId(obj.get("fromUser").toString())
                 .text(obj.get("text").toString())
                 .build();
 
-        messagesService.save(requestDto);
+        Messages tmpMessage = messagesService.saveMessageReturnEntity(requestDto);
+
+        obj.put("id", tmpMessage.getId());
+        obj.put("createdDate", tmpMessage.getCreatedDate());
 
         if(rls.size() > 0) {
             for(int i=0; i<rls.size(); i++) {
