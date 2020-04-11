@@ -32,6 +32,17 @@ public class UsersService {
         return id;
     }
 
+    @Transactional
+    public Long updateScore(Long id, int isLiked) {
+        Users users = usersRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id=" + id));
+
+        users.updateScore(isLiked);
+
+        return id;
+    }
+
+
     @Transactional(readOnly = true)
     public UsersResponseDto findUser(String userId) {
         Users entity = usersRepository.findUser(userId);

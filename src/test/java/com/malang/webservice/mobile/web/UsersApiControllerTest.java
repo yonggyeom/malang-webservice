@@ -123,6 +123,36 @@ public class UsersApiControllerTest {
 
     @Test
     @WithMockUser(roles="USER")
+    public void Users_점수수정된다() throws Exception {
+        int acquiredScore = 0;
+        int evaluatorCnt = 0;
+
+        //given
+        Users savedUsers = usersRepository.save(Users.builder()
+                .googleUserId("googleUserId")
+                .acquiredScore(acquiredScore)
+                .evaluatorCnt(evaluatorCnt)
+                .build());
+
+        Long updateId = savedUsers.getId();
+
+        String url = "http://localhost:" + port + "/api/v1/users/updateScore/" + updateId + "/1";
+
+        //when
+        mvc.perform(put(url)
+                .contentType(MediaType.APPLICATION_JSON_UTF8)
+//                .content(new ObjectMapper().writeValueAsString(requestDto))
+                )
+                .andExpect(status().isOk());
+
+        //then
+        List<Users> all = usersRepository.findAll();
+        assertThat(all.get(0).getAcquiredScore()).isEqualTo(acquiredScore + 1);
+        assertThat(all.get(0).getEvaluatorCnt()).isEqualTo(evaluatorCnt + 1);
+    }
+
+    @Test
+    @WithMockUser(roles="USER")
     public void Users_조회된다() throws Exception {
         String googleUserId = "googleUserId";
         String userNickname = "userNickname";

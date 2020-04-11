@@ -24,6 +24,11 @@ public class UsersApiController {
         return usersService.update(id, requestDto);
     }
 
+    @PutMapping("/api/v1/users/updateScore/{id}/{isLiked}")
+    public Long updateScore(@PathVariable Long id, @PathVariable int isLiked) {
+        return usersService.updateScore(id, isLiked);
+    }
+
     @GetMapping("/api/v1/users/findUser/{userId}")
     public UsersResponseDto findUser(@PathVariable String userId) {
         return usersService.findUser(userId);

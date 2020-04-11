@@ -80,6 +80,15 @@ public class Users extends BaseTimeEntity {
         this.userPhoneNumber         = requestDto.getUserPhoneNumber();
     }
 
+    public void updateScore(int isLiked) {
+        if(isLiked == 1){
+            this.acquiredScore           = this.acquiredScore + 1;
+            this.evaluatorCnt            = this.evaluatorCnt  + 1;
+        }else{
+            this.evaluatorCnt            = this.evaluatorCnt  + 1;
+        }
+    }
+
 //    public void update(String title, String content) {
 //        this.title = title;
 //        this.content = content;
