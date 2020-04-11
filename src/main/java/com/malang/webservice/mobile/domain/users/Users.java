@@ -87,6 +87,10 @@ public class Users extends BaseTimeEntity {
         }else{
             this.evaluatorCnt            = this.evaluatorCnt  + 1;
         }
+
+        if(this.evaluatorCnt == this.maxScoreCnt){
+            this.reqRecommendationYn = 0;
+        }
     }
 
 //    public void update(String title, String content) {
