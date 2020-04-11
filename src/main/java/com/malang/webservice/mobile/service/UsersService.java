@@ -65,4 +65,11 @@ public class UsersService {
                 .collect(Collectors.toList());
     }
 
+    @Transactional(readOnly = true)
+    public List<UsersListResponseDto> findAllUserByReqRecommendationYn(int reqRecommendationYn) {
+        return usersRepository.findAllUserByReqRecommendationYn(reqRecommendationYn).stream()
+                .map(UsersListResponseDto::new)
+                .collect(Collectors.toList());
+    }
+
 }

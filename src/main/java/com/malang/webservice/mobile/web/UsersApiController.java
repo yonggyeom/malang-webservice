@@ -44,4 +44,9 @@ public class UsersApiController {
         return usersService.findAllDesc(id);
     }
 
+    @GetMapping("/api/v1/users/findAllUserByReqRecommendationYn/{reqRecommendationYn}")
+    public List<UsersListResponseDto> findAllUserByReqRecommendationYn(@PathVariable int reqRecommendationYn) {
+        return usersService.findAllUserByReqRecommendationYn(reqRecommendationYn);
+    }
+
 }

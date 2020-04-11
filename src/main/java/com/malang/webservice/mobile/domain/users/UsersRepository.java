@@ -21,4 +21,8 @@ public interface UsersRepository extends JpaRepository<Users, Long> {
 
     @Query("SELECT u FROM Users u WHERE u.id != :id ORDER BY u.id DESC")
     List<Users> findAllDesc(@Param("id") Long id);
+
+    @Query("SELECT u FROM Users u WHERE u.reqRecommendationYn = :reqRecommendationYn")
+    List<Users> findAllUserByReqRecommendationYn(@Param("reqRecommendationYn") int reqRecommendationYn);
+
 }
