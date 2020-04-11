@@ -66,8 +66,8 @@ public class UsersService {
     }
 
     @Transactional(readOnly = true)
-    public List<UsersListResponseDto> findAllUserByReqRecommendationYn(int reqRecommendationYn) {
-        return usersRepository.findAllUserByReqRecommendationYn(reqRecommendationYn).stream()
+    public List<UsersListResponseDto> findAllUserByReqRecommendationYnExceptMe(int reqRecommendationYn, Long id) {
+        return usersRepository.findAllUserByReqRecommendationYnExceptMe(reqRecommendationYn, id).stream()
                 .map(UsersListResponseDto::new)
                 .collect(Collectors.toList());
     }

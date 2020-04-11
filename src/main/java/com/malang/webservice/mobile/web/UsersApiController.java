@@ -44,9 +44,9 @@ public class UsersApiController {
         return usersService.findAllDesc(id);
     }
 
-    @GetMapping("/api/v1/users/findAllUserByReqRecommendationYn/{reqRecommendationYn}")
-    public List<UsersListResponseDto> findAllUserByReqRecommendationYn(@PathVariable int reqRecommendationYn) {
-        return usersService.findAllUserByReqRecommendationYn(reqRecommendationYn);
+    @GetMapping("/api/v1/users/findAllUserByReqRecommendationYnExceptMe/{reqRecommendationYn}/{id}")
+    public List<UsersListResponseDto> findAllUserByReqRecommendationYnExceptMe(@PathVariable int reqRecommendationYn, @PathVariable Long id) {
+        return usersService.findAllUserByReqRecommendationYnExceptMe(reqRecommendationYn, id);
     }
 
 }

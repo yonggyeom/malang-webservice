@@ -260,7 +260,9 @@ public class UsersApiControllerTest {
                 .reqRecommendationYn(reqRecommendationYn)
                 .build());
 
-        String url = "http://localhost:" + port + "/api/v1/users/findAllUserByReqRecommendationYn/" + reqRecommendationYn;
+        Long getId = savedUsers.getId();
+
+        String url = "http://localhost:" + port + "/api/v1/users/findAllUserByReqRecommendationYnExceptMe/" + reqRecommendationYn + "/" + getId.toString();
 
         //when
         mvc.perform(get(url)
