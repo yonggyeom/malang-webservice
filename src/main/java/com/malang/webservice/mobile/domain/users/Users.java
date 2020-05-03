@@ -38,6 +38,7 @@ public class Users extends BaseTimeEntity {
     private String userPhoneNumber        ;
 
     private String gender         ;
+    @Column(nullable = true)
     private int height            ;
     private String bloodType      ;
     private String religionType   ;
