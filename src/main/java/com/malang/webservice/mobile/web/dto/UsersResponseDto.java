@@ -32,6 +32,22 @@ public class UsersResponseDto {
     private LocalDateTime createdDate;
     private LocalDateTime modifiedDate;
 
+    private String gender         ;
+    private int height            ;
+    private String bloodType      ;
+    private String religionType   ;
+    private String drinkingType   ;
+    private String smokingType    ;
+    private String schoolType     ;
+    private String schoolName     ;
+    private String jobType        ;
+    private String jobName        ;
+    private String companyName    ;
+    private String characterType  ;
+    private String hobbyList      ;
+    private String idealTypeList  ;
+    private String selfIntroducing;
+
     public UsersResponseDto(Users entity) {
         this.id           = entity.getId();
         this.birthDate               = entity.getBirthDate()              ;
@@ -54,6 +70,22 @@ public class UsersResponseDto {
         this.userPhoneNumber         = entity.getUserPhoneNumber()        ;
         this.createdDate             = entity.getCreatedDate()            ;
         this.modifiedDate            = entity.getModifiedDate()           ;
+
+        this.gender          = entity.getGender();
+        this.height          = entity.getHeight();
+        this.bloodType       = entity.getBloodType();
+        this.religionType    = entity.getReligionType();
+        this.drinkingType    = entity.getDrinkingType();
+        this.smokingType     = entity.getSmokingType();
+        this.schoolType      = entity.getSchoolType();
+        this.schoolName      = entity.getSchoolName();
+        this.jobType         = entity.getJobType();
+        this.jobName         = entity.getJobName();
+        this.companyName     = entity.getCompanyName();
+        this.characterType   = entity.getCharacterType();
+        this.hobbyList       = entity.getHobbyList();
+        this.idealTypeList   = entity.getIdealTypeList();
+        this.selfIntroducing = entity.getSelfIntroducing();
     }
 
     //    public UsersResponseDto(Posts entity) {
