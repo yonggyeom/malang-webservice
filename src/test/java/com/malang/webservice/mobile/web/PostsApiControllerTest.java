@@ -60,7 +60,7 @@ public class PostsApiControllerTest {
         postsRepository.deleteAll();
     }
 
-    // 테스트
+    // 테스트-1
     @Test
     @WithMockUser(roles="USER")
     public void Posts_등록된다() throws Exception {
