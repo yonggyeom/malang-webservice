@@ -159,7 +159,7 @@ public class Users extends BaseTimeEntity {
             this.evaluatorCnt            = this.evaluatorCnt  + 1;
         }
 
-        if(this.evaluatorCnt == this.maxScoreCnt){
+        if(this.evaluatorCnt >= this.maxScoreCnt){
             this.reqRecommendationYn = 0;
         }
     }
