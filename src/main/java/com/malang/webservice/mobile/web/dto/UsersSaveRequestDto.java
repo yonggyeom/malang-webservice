@@ -46,8 +46,10 @@ public class UsersSaveRequestDto {
     private String idealTypeList  ;
     private String selfIntroducing;
 
+    private int activationYn      ;
+
     @Builder
-    public UsersSaveRequestDto(String birthDate, int candyCnt, String googleUserId, String kakaoUserId, String naverUserId, Double latitude, Double longitude, Timestamp latestRecommendedDate, String firstRecommendedUserId, String secondRecommendedUserId, String representativeImageUrl, int reqRecommendationYn, int acquiredScore, int maxScoreCnt, int evaluatorCnt, String representativeUserId, String userNickname, String userPhoneNumber, String gender, int height, String bloodType, String religionType, String drinkingType, String smokingType, String schoolType, String schoolName, String jobType, String jobName, String companyName, String characterType, String hobbyList, String idealTypeList, String selfIntroducing) {
+    public UsersSaveRequestDto(String birthDate, int candyCnt, String googleUserId, String kakaoUserId, String naverUserId, Double latitude, Double longitude, Timestamp latestRecommendedDate, String firstRecommendedUserId, String secondRecommendedUserId, String representativeImageUrl, int reqRecommendationYn, int acquiredScore, int maxScoreCnt, int evaluatorCnt, String representativeUserId, String userNickname, String userPhoneNumber, String gender, int height, String bloodType, String religionType, String drinkingType, String smokingType, String schoolType, String schoolName, String jobType, String jobName, String companyName, String characterType, String hobbyList, String idealTypeList, String selfIntroducing, int activationYn) {
         this.birthDate = birthDate;
         this.candyCnt = candyCnt;
         this.googleUserId = googleUserId;
@@ -82,6 +84,8 @@ public class UsersSaveRequestDto {
         this.hobbyList = hobbyList;
         this.idealTypeList = idealTypeList;
         this.selfIntroducing = selfIntroducing;
+
+        this.activationYn = activationYn;
     }
 
 //    @Builder
@@ -141,6 +145,7 @@ public class UsersSaveRequestDto {
             .hobbyList              (hobbyList)
             .idealTypeList          (idealTypeList)
             .selfIntroducing        (selfIntroducing)
+            .activationYn           (activationYn)
             .build();
     }
 

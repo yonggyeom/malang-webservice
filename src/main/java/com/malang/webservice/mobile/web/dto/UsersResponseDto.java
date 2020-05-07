@@ -48,6 +48,8 @@ public class UsersResponseDto {
     private String idealTypeList  ;
     private String selfIntroducing;
 
+    private int activationYn      ;
+
     public UsersResponseDto(Users entity) {
         this.id           = entity.getId();
         this.birthDate               = entity.getBirthDate()              ;
@@ -86,6 +88,8 @@ public class UsersResponseDto {
         this.hobbyList       = entity.getHobbyList();
         this.idealTypeList   = entity.getIdealTypeList();
         this.selfIntroducing = entity.getSelfIntroducing();
+
+        this.activationYn    = entity.getActivationYn();
     }
 
     //    public UsersResponseDto(Posts entity) {

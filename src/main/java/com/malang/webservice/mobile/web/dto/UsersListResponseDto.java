@@ -47,6 +47,8 @@ public class UsersListResponseDto {
     private String idealTypeList  ;
     private String selfIntroducing;
 
+    private int activationYn      ;
+
     public UsersListResponseDto(Users entity) {
         this.id = entity.getId();
         this.birthDate               = entity.getBirthDate()              ;
@@ -85,5 +87,7 @@ public class UsersListResponseDto {
         this.hobbyList       = entity.getHobbyList();
         this.idealTypeList   = entity.getIdealTypeList();
         this.selfIntroducing = entity.getSelfIntroducing();
+
+        this.activationYn    = entity.getActivationYn();
     }
 }

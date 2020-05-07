@@ -54,8 +54,10 @@ public class Users extends BaseTimeEntity {
     private String idealTypeList  ;
     private String selfIntroducing;
 
+    private int activationYn      ;
+
     @Builder
-    public Users(Long id, String birthDate, int candyCnt, String googleUserId, String kakaoUserId, String naverUserId, Double latitude, Double longitude, Timestamp latestRecommendedDate, String firstRecommendedUserId, String secondRecommendedUserId, String representativeImageUrl, int reqRecommendationYn, int acquiredScore, int maxScoreCnt, int evaluatorCnt, String representativeUserId, String userNickname, String userPhoneNumber, String gender, int height, String bloodType, String religionType, String drinkingType, String smokingType, String schoolType, String schoolName, String jobType, String jobName, String companyName, String characterType, String hobbyList, String idealTypeList, String selfIntroducing) {
+    public Users(Long id, String birthDate, int candyCnt, String googleUserId, String kakaoUserId, String naverUserId, Double latitude, Double longitude, Timestamp latestRecommendedDate, String firstRecommendedUserId, String secondRecommendedUserId, String representativeImageUrl, int reqRecommendationYn, int acquiredScore, int maxScoreCnt, int evaluatorCnt, String representativeUserId, String userNickname, String userPhoneNumber, String gender, int height, String bloodType, String religionType, String drinkingType, String smokingType, String schoolType, String schoolName, String jobType, String jobName, String companyName, String characterType, String hobbyList, String idealTypeList, String selfIntroducing, int activationYn) {
         this.birthDate = birthDate;
         this.candyCnt = candyCnt;
         this.googleUserId = googleUserId;
@@ -90,6 +92,8 @@ public class Users extends BaseTimeEntity {
         this.hobbyList = hobbyList;
         this.idealTypeList = idealTypeList;
         this.selfIntroducing = selfIntroducing;
+
+        this.activationYn = activationYn;
     }
 
 //    @Builder
@@ -149,6 +153,8 @@ public class Users extends BaseTimeEntity {
         this.hobbyList       = requestDto.getHobbyList();
         this.idealTypeList   = requestDto.getIdealTypeList();
         this.selfIntroducing = requestDto.getSelfIntroducing();
+
+        this.activationYn    = requestDto.getActivationYn();
     }
 
     public void updateScore(int isLiked) {
