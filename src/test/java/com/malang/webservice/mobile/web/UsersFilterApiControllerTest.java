@@ -90,6 +90,32 @@ public class UsersFilterApiControllerTest {
 
     @Test
     @WithMockUser(roles="USER")
+    public void UsersFilter_조회된다() throws Exception {
+        String representativeUserId = "representativeUserId";
+        String friendType = "friendType";
+
+        //given
+        UsersFilter savedUsersFilter = usersFilterRepository.save(UsersFilter.builder()
+                .representativeUserId(representativeUserId)
+                .friendType          (friendType)
+                .ageFrom             (19)
+                .ageTo               (30)
+                .build());
+
+        String url = "http://localhost:" + port + "/api/v1/usersFilter/findUser/" + representativeUserId;
+
+        //when
+        mvc.perform(get(url)
+                .contentType(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(status().isOk());
+
+        //then
+        List<UsersFilter> all = usersFilterRepository.findAll();
+        assertThat(all.get(0).getRepresentativeUserId()).isEqualTo(representativeUserId);
+    }
+
+    @Test
+    @WithMockUser(roles="USER")
     public void UsersFilter_조회된다_ById() throws Exception {
         String representativeUserId = "representativeUserId";
         String friendType = "friendType";

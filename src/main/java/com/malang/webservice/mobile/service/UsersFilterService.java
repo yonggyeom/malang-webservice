@@ -6,6 +6,7 @@ import com.malang.webservice.mobile.domain.users_filter.UsersFilterRepository;
 import com.malang.webservice.mobile.web.dto.UsersFilterResponseDto;
 import com.malang.webservice.mobile.web.dto.UsersFilterSaveRequestDto;
 import com.malang.webservice.mobile.web.dto.UsersFilterUpdateRequestDto;
+import com.malang.webservice.mobile.web.dto.UsersResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +19,13 @@ public class UsersFilterService {
     @Transactional
     public Long save(UsersFilterSaveRequestDto requestDto) {
         return usersFilterRepository.save(requestDto.toEntity()).getId();
+    }
+
+    @Transactional(readOnly = true)
+    public UsersFilterResponseDto findUserFilter(String representativeUserId) {
+        UsersFilter entity = usersFilterRepository.findUserFilter(representativeUserId);
+
+        return new UsersFilterResponseDto(entity);
     }
 
     @Transactional(readOnly = true)
