@@ -1,6 +1,7 @@
 package com.malang.webservice.mobile.domain.users_filter;
 
 import com.malang.webservice.mobile.domain.BaseTimeEntity;
+import com.malang.webservice.mobile.web.dto.UsersFilterUpdateRequestDto;
 import com.malang.webservice.mobile.web.dto.UsersUpdateRequestDto;
 import lombok.Builder;
 import lombok.Getter;
@@ -29,6 +30,13 @@ public class UsersFilter extends BaseTimeEntity {
         this.friendType = friendType;
         this.ageFrom = ageFrom;
         this.ageTo = ageTo;
+    }
+
+    public void update(UsersFilterUpdateRequestDto requestDto) {
+        this.representativeUserId = requestDto.getRepresentativeUserId();
+        this.friendType           = requestDto.getFriendType();
+        this.ageFrom              = requestDto.getAgeFrom();
+        this.ageTo                = requestDto.getAgeTo();
     }
 
 }

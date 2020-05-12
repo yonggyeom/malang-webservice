@@ -1,16 +1,14 @@
 package com.malang.webservice.mobile.service;
 
 import com.malang.webservice.mobile.domain.users.Users;
-import com.malang.webservice.mobile.domain.users.UsersRepository;
 import com.malang.webservice.mobile.domain.users_filter.UsersFilter;
 import com.malang.webservice.mobile.domain.users_filter.UsersFilterRepository;
-import com.malang.webservice.mobile.web.dto.*;
+import com.malang.webservice.mobile.web.dto.UsersFilterResponseDto;
+import com.malang.webservice.mobile.web.dto.UsersFilterSaveRequestDto;
+import com.malang.webservice.mobile.web.dto.UsersFilterUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -28,5 +26,15 @@ public class UsersFilterService {
                 .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id=" + id));
 
         return new UsersFilterResponseDto(entity);
+    }
+
+    @Transactional
+    public Long update(Long id, UsersFilterUpdateRequestDto requestDto) {
+        UsersFilter usersFilter = usersFilterRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id=" + id));
+
+        usersFilter.update(requestDto);
+
+        return id;
     }
 }

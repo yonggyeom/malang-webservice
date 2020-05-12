@@ -5,7 +5,9 @@ import com.malang.webservice.mobile.domain.users.Users;
 import com.malang.webservice.mobile.domain.users_filter.UsersFilter;
 import com.malang.webservice.mobile.domain.users_filter.UsersFilterRepository;
 import com.malang.webservice.mobile.web.dto.UsersFilterSaveRequestDto;
+import com.malang.webservice.mobile.web.dto.UsersFilterUpdateRequestDto;
 import com.malang.webservice.mobile.web.dto.UsersSaveRequestDto;
+import com.malang.webservice.mobile.web.dto.UsersUpdateRequestDto;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -25,8 +27,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
@@ -113,5 +114,33 @@ public class UsersFilterApiControllerTest {
         //then
         List<UsersFilter> all = usersFilterRepository.findAll();
         assertThat(all.get(0).getFriendType()).isEqualTo(friendType);
+    }
+
+    @Test
+    @WithMockUser(roles="USER")
+    public void UsersFilter_수정된다() throws Exception {
+        //given
+        UsersFilter savedUsersFilter = usersFilterRepository.save(UsersFilter.builder()
+                .friendType("friendType")
+                .build());
+
+        Long updateId = savedUsersFilter.getId();
+        String expectedFriendType = "friendType2";
+
+        UsersFilterUpdateRequestDto requestDto = UsersFilterUpdateRequestDto.builder()
+                .friendType(expectedFriendType)
+                .build();
+
+        String url = "http://localhost:" + port + "/api/v1/usersFilter/update/" + updateId;
+
+        //when
+        mvc.perform(put(url)
+                .contentType(MediaType.APPLICATION_JSON_UTF8)
+                .content(new ObjectMapper().writeValueAsString(requestDto)))
+                .andExpect(status().isOk());
+
+        //then
+        List<UsersFilter> all = usersFilterRepository.findAll();
+        assertThat(all.get(0).getFriendType()).isEqualTo(expectedFriendType);
     }
 }
