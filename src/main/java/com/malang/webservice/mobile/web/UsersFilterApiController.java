@@ -16,7 +16,7 @@ public class UsersFilterApiController {
         return usersFilterService.save(requestDto);
     }
 
-    @GetMapping("/api/v1/usersFilter/findUser/{representativeUserId}")
+    @GetMapping("/api/v1/usersFilter/findUserFilter/{representativeUserId}")
     public UsersFilterResponseDto findUserFilter(@PathVariable String representativeUserId) {
         return usersFilterService.findUserFilter(representativeUserId);
     }

@@ -102,7 +102,7 @@ public class UsersFilterApiControllerTest {
                 .ageTo               (30)
                 .build());
 
-        String url = "http://localhost:" + port + "/api/v1/usersFilter/findUser/" + representativeUserId;
+        String url = "http://localhost:" + port + "/api/v1/usersFilter/findUserFilter/" + representativeUserId;
 
         //when
         mvc.perform(get(url)
